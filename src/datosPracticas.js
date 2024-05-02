@@ -54,8 +54,21 @@ class Practicas{
   contarPruebas() {
     return this.pruebas.length;
   }
+  //ggus
+  cargarDatos(nombre, descripcion, fecha, enlace) {
+    this.practicas.push({ nombre, descripcion, fecha, enlace });
+  }
 
+  eliminarDatos(nombre) {
+    this.practicas = this.practicas.filter(practica => practica.nombre !== nombre);
+  }
+
+  buscarProyectoTDD(nombre) {
+    return this.practicas.filter(practica => practica.nombre === nombre);
+  }
   
 }
 
 export default Practicas;
+
+

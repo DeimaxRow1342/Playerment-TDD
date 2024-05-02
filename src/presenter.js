@@ -43,6 +43,7 @@ function cargarPracticasIniciales() {
 }
 
 
+
 function eliminarPractica(nombre) {
   if(confirm("¿Estás seguro de eliminar la práctica?")) {
     const nuevaPractica = new Practicas();

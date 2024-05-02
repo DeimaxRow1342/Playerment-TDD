@@ -404,6 +404,19 @@ describe("Crear un programa gamificado para TDDLab", () => {
     const metrics = practica.motrarMetricas();
     expect(metrics.find(m => m.numeroCommit === 1).cobertura).toEqual(70);
   });
+  //gus
+
+  it('Buscar proyecto TDD por nombre existente', () => {
+    const resultado = practicas.buscarProyectoTDD("FizzBuzz");
+    expect(resultado.length).toBe(1);
+    expect(resultado[0].nombre).toBe("FizzBuzz");
+  });
+
+  it('Buscar proyecto TDD por nombre inexistente', () => {
+    const resultado = practicas.buscarProyectoTDD("Proyecto Inexistente");
+    expect(resultado.length).toBe(0);
+  });
 
 });
+
 
