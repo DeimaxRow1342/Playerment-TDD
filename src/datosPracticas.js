@@ -55,7 +55,6 @@ class Practicas{
     return this.pruebas.length;
   }
 
-  
 }
 
 export default Practicas;

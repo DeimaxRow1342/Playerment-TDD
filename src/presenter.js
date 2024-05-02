@@ -42,7 +42,6 @@ function cargarPracticasIniciales() {
   actualizarTablaPracticas();
 }
 
-
 function eliminarPractica(nombre) {
   if(confirm("¿Estás seguro de eliminar la práctica?")) {
     const nuevaPractica = new Practicas();
@@ -54,6 +53,11 @@ function eliminarPractica(nombre) {
     console.log("No se eliminó la práctica");
   }
 
+}
+function buscarPracticaPorNombre(){
+
+
+  
 }
 
 function actualizarTablaPracticas() {

@@ -406,4 +406,17 @@ describe("Crear un programa gamificado para TDDLab", () => {
   });
 
 });
+/**/
+it("Busca una práctica por su nombre", () => {
+  const practica = new Practicas();
+  practica.cargarDatos("FizzBuzz", "Una práctica de TDD donde se retorna una cadena de Fizz, Buzz o FizzBuzz de acuerdo a ciertas reglas", "20/02/2024", "https://github.com/DeimaxRow1342/SecuenciaFizzBuzz");
+  const practicaEncontrada = practica.obtenerPractica("FizzBuzz");
+  expect(practicaEncontrada.nombre).toEqual("FizzBuzz");
+});
+
+
+
+
+
+
 
