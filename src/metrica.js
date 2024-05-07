@@ -47,7 +47,7 @@ class Metrica {
         if(cobertura >= 95)
             return 10
         else 
-            return 0
+            return 2
    }
 }
 
