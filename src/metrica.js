@@ -37,6 +37,10 @@ class Metrica {
         }
         return puntaje;
     }
+    calcularPuntajeExamen(pruebas){
+        if (pruebas <=2)
+            return 10
+    }
 }
 
 export default Metrica;
