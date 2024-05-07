@@ -6,4 +6,9 @@ describe("Crear un apartado que configure el puntaje", () => {
       metrica.cargarMetricas(2, 0);
       expect(metrica.calcularPuntajeExamen(2)).toBe(10);
     });
+    it("Si el numero de pruebas es mayor a 2 el puntaje es de 0", () => {
+      const metrica = new Metrica();
+      metrica.cargarMetricas(3, 0);
+      expect(metrica.calcularPuntajeExamen(3)).toBe(0);
+    });
 });

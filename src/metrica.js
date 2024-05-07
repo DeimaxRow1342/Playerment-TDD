@@ -40,6 +40,8 @@ class Metrica {
     calcularPuntajeExamen(pruebas){
         if (pruebas <=2)
             return 10
+        else
+            return 0
     }
 }
 
