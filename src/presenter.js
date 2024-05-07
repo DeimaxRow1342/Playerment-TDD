@@ -123,7 +123,8 @@ function ingresarAMetricaDePractica(nombrePractica) {
       const metricaItem = document.createElement('li');
       //metricaItem.textContent = Commit: ${metrica.numeroCommit}, Puntaje: ${metrica.puntaje}, Explicación: ${metrica.explicacion};
       
-      metricaItem.textContent = `Commit: ${metrica.numeroCommit}, Numero de pruebas: ${metrica.pruebas}, Porcentaje de cobertura: ${metrica.cobertura}, Puntaje: ${metrica.puntaje}, Explicación: ${metrica.explicacion}`;
+      puntaje = calcularPuntaje(metrica.pruebas, metrica.cobertura);
+      metricaItem.textContent = `Commit: ${metrica.numeroCommit}, Numero de pruebas: ${metrica.pruebas}, Porcentaje de cobertura: ${metrica.cobertura}, Puntaje: ${puntaje}, Explicación: ${metrica.explicacion}`;
 
 
       const btnEliminar = document.createElement('button');
@@ -194,5 +195,12 @@ function ingresarAMetricaDePractica(nombrePractica) {
   }
 }
 
+calcularPuntaje = (pruebas, cobertura) => {
+  const metrica = new Metrica();
+  metrica.cargarMetricas(pruebas, cobertura);
+  return metrica.calcularPuntajeExamen(pruebas) + metrica.calcularPuntajeCobertura(cobertura);
+}
+
 window.eliminarPractica = eliminarPractica;
 window.ingresarAMetricaDePractica = ingresarAMetricaDePractica;
+window.calcularPuntaje = calcularPuntaje;
