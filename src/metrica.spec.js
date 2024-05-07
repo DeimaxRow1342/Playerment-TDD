@@ -15,5 +15,10 @@ describe("Crear un apartado que configure el puntaje", () => {
         const metrica = new Metrica();
         metrica.cargarMetricas(3, 95);
         expect(metrica.calcularPuntajeCobertura(95)).toBe(10);
-      });
+    });
+    it("Si el numero de cobertura es menor a 95 el puntaje es de 0", () => {
+        const metrica = new Metrica();
+        metrica.cargarMetricas(3, 95);
+        expect(metrica.calcularPuntajeCobertura(90)).toBe(0);
+    });
 });

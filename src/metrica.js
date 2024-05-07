@@ -46,6 +46,8 @@ class Metrica {
    calcularPuntajeCobertura(cobertura){
         if(cobertura >= 95)
             return 10
+        else 
+            return 0
    }
 }
 
