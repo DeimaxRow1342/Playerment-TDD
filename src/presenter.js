@@ -198,7 +198,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
 calcularPuntaje = (pruebas, cobertura) => {
   const metrica = new Metrica();
   metrica.cargarMetricas(pruebas, cobertura);
-  return metrica.calcularPuntajeExamen(pruebas) + metrica.calcularPuntajeCobertura(cobertura);
+  return metrica.calcularPuntajePruebas(pruebas) + metrica.calcularPuntajeCobertura(cobertura);
 }
 
 window.eliminarPractica = eliminarPractica;
