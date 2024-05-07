@@ -43,6 +43,10 @@ class Metrica {
         else
             return 0
     }
+   calcularPuntajeCobertura(cobertura){
+        if(cobertura >= 95)
+            return 10
+   }
 }
 
 export default Metrica;

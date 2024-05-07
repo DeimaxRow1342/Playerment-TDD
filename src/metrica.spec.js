@@ -11,4 +11,9 @@ describe("Crear un apartado que configure el puntaje", () => {
       metrica.cargarMetricas(3, 0);
       expect(metrica.calcularPuntajeExamen(3)).toBe(0);
     });
+    it("Si el numero de cobertura es mayor o igual a 95 el puntaje es de 10", () => {
+        const metrica = new Metrica();
+        metrica.cargarMetricas(3, 95);
+        expect(metrica.calcularPuntajeCobertura(95)).toBe(10);
+      });
 });
