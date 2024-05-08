@@ -3,7 +3,7 @@ import buscarProyecto from './buscador';
 describe('buscador', () => {
     it("no deberia encontrar proyectos cuando la lista esta vacia", () => {
         let proyectos = [];
-        expect(buscarProyecto("ejercicio1", proyectos)).toEqual([]);
+        expect(buscarProyecto("ejercicio1", proyectos)).toEqual("");
     });
     it("Encuetra un proyecto cuando esta en la lista", () => {
         let proyectos = []
@@ -31,5 +31,12 @@ describe('buscador', () => {
         proyectos.push("ejercicio2");
         proyectos.push("ejercicio3");
         expect(buscarProyecto("ejerc", proyectos)).toEqual(["ejercicio1", "ejercicio2", "ejercicio3"]);
+    });
+    it("No encuentra coincidencias en una lista con una palabra clave", () => {
+        let proyectos = [];
+        proyectos.push("ejercicio1");
+        proyectos.push("ejercicio2");
+        proyectos.push("ejercicio3");
+        expect(buscarProyecto("prueba", proyectos)).toEqual("");
     });
 });
