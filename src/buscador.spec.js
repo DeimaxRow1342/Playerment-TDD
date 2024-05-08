@@ -10,4 +10,11 @@ describe('buscador', () => {
         proyectos.push("ejercicio1");
         expect(buscarProyecto("ejercicio1", proyectos)).toEqual("ejercicio1");
     });
+    it("Encuentra el proyecto cuando hay mas de un elemento en la lista", () => {
+        let proyectos = [];
+        proyectos.push("ejercicio1");
+        proyectos.push("ejercicio2");
+        proyectos.push("ejercicio3");
+        expect(buscarProyecto("ejercicio2", proyectos)).toEqual("ejercicio2");
+    });
 });
