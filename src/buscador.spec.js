@@ -25,4 +25,11 @@ describe('buscador', () => {
         proyectos.push("ejercicio3");
         expect(buscarProyecto("ejercicio1", proyectos)).toEqual(["ejercicio1", "ejercicio1"]);
     });
+    it("Encuentra las coincidencias en una lista con una palabra clave", () => {
+        let proyectos = [];
+        proyectos.push("ejercicio1");
+        proyectos.push("ejercicio2");
+        proyectos.push("ejercicio3");
+        expect(buscarProyecto("ejerc", proyectos)).toEqual(["ejercicio1", "ejercicio2", "ejercicio3"]);
+    });
 });
