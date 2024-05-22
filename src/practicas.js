@@ -1,4 +1,4 @@
-import MetricaArray from "./metricasArray";
+import ModuloMetricas from "./moduloMetricas";
 
 class Practicas{
   constructor(){
@@ -6,7 +6,7 @@ class Practicas{
     this.descripcion = null;
     this.fecha = null;
     this.enlace = null;
-    this.metricaArray = new MetricaArray();
+    this.ModuloMetricas = new ModuloMetricas();
     this.lastCommitNumber = 0;
     this.pruebas = [];
   }
@@ -27,7 +27,7 @@ class Practicas{
   anadirMetrica(numeroCommit, puntaje, explicacion, pruebas, cobertura) {
     // Validar que el número de commit sea exactamente uno más que el último
     if (numeroCommit === this.lastCommitNumber + 1) {
-        this.metricaArray.anadirMetricaCommit(numeroCommit, puntaje, explicacion, pruebas, cobertura);
+        this.ModuloMetricas.anadirMetricaCommit(numeroCommit, puntaje, explicacion, pruebas, cobertura);
         this.lastCommitNumber = numeroCommit; // Actualizar el último número de commit
         return true;
     }
@@ -35,7 +35,7 @@ class Practicas{
   }
 
   motrarMetricas(){
-    return this.metricaArray.desplegarMetrica();
+    return this.ModuloMetricas.desplegarMetrica();
   }
 
   eliminarDatos(nombre){
@@ -48,7 +48,7 @@ class Practicas{
   }
 
   eliminarMetrica(numeroCommit) {
-    this.metricaArray.eliminarMetricaCommit(numeroCommit);
+    this.ModuloMetricas.eliminarMetricaCommit(numeroCommit);
   }  
 
   contarPruebas() {

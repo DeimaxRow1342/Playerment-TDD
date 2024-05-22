@@ -1,6 +1,6 @@
 import Practicas from "./practicas.js"
 import Metrica from "./metrica.js"
-import MetricaArray from "./metricasArray"
+import ModuloMetricas from "./moduloMetricas.js"
 
 describe("Crear un programa gamificado para TDDLab", () => {
     it("Se debe añadir un primer commit en las metricas", () => {
@@ -54,7 +54,7 @@ describe("Crear un programa gamificado para TDDLab", () => {
         let numCommit = 1;
         let puntaje = 100;
         let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
-        let metricArray = new MetricaArray();
+        let metricArray = new ModuloMetricas();
         expect(metricArray.desplegarMetrica()).toEqual([]);
     });
 
@@ -62,7 +62,7 @@ describe("Crear un programa gamificado para TDDLab", () => {
         let numCommit = 1;
         let puntaje = 100;
         let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
-        let metricArray = new MetricaArray();
+        let metricArray = new ModuloMetricas();
         metricArray.anadirMetricaCommit(numCommit,puntaje,explicacion);
 
         let arrayDeMetrica = [{
@@ -82,7 +82,7 @@ describe("Crear un programa gamificado para TDDLab", () => {
         let puntaje2 = 90;
         let explicacion2 = "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz";
 
-        let metricArray = new MetricaArray();
+        let metricArray = new ModuloMetricas();
         metricArray.anadirMetricaCommit(numCommit1,puntaje1,explicacion1);
         metricArray.anadirMetricaCommit(numCommit2,puntaje2,explicacion2);
 
@@ -112,7 +112,7 @@ describe("Crear un programa gamificado para TDDLab", () => {
     let puntaje3 = 95;
     let explicacion3 = "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3";
 
-    let metricArray = new MetricaArray();
+    let metricArray = new ModuloMetricas();
     metricArray.anadirMetricaCommit(numCommit1,puntaje1,explicacion1);
     metricArray.anadirMetricaCommit(numCommit2,puntaje2,explicacion2);
     metricArray.anadirMetricaCommit(numCommit3,puntaje3,explicacion3);
