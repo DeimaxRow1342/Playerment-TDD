@@ -1,7 +1,6 @@
-// Importar las clases necesarias
-import Practicas from "./datosPracticas.js";
+import Practicas from "./practicas.js";
 import Metrica from "./metrica.js";
-import MetricaArray from "./metricasArray.js";
+import ModuloMetricas from "./moduloMetricas.js";
 
 let practicas = [];
 
