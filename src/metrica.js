@@ -37,6 +37,9 @@ class Metrica {
         }
         return puntaje;
     }
+    calcularPuntajePorCobertura(cobertura){
+        return 0;
+    }
 }
 
 export default Metrica;
