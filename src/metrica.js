@@ -44,7 +44,10 @@ class Metrica {
             return 12;
         else if(cobertura >= 80 && cobertura <= 90)
             return 16;
-        return 0;
+        else if(cobertura > 90)
+            return 20;
+        else
+            return 0;
     }
 }
 
