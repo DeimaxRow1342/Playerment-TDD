@@ -46,6 +46,13 @@ class ModuloMetricas {
     eliminarMetricaCommit(numeroCommit) {
         this.arregloMetrica = this.arregloMetrica.filter(metrica => metrica.numeroCommit !== numeroCommit);
     }
+
+    calcularPuntaje(numeroCommit) {
+        const metrica = this.buscarMetricaPorCommit(numeroCommit);
+        if (metrica) {
+            return metrica.calcularPuntajePorCobertura(metrica.cobertura);
+        }
+    }
 }
 
 export default ModuloMetricas;

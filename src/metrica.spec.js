@@ -1,6 +1,7 @@
 import Practicas from "./practicas.js";
 import Metrica from "./metrica.js";
 import MetricaArray from "./moduloMetricas.js";
+import ModuloMetricas from "./moduloMetricas.js";
 
 describe("Crear un programa gamificado para TDDLab", () => {
   it("Si ingreso el nombre de una practica, me regresa el nombre", () => {
@@ -399,6 +400,12 @@ describe("Crear un programa gamificado para TDDLab", () => {
   it("Si la cobertura es mayor a 90, el puntaje es 20", () =>{
     const metrica = new Metrica();
     expect(metrica.calcularPuntajePorCobertura(91)).toEqual(20);
+  })
+  /* Puntaje modulo metrica */
+  it("Se deberia poder calcular el puntaje desde modulo metricas", () =>{
+    const modMetricas = new ModuloMetricas();
+    modMetricas.anadirMetricaCommit(1, 100, "Primer commit", 5, 92);
+    expect(modMetricas.calcularPuntaje(1)).toEqual(20); 
   })
 });
 
