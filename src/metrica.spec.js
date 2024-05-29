@@ -388,5 +388,9 @@ describe("Crear un programa gamificado para TDDLab", () => {
     const metrica = new Metrica();
     expect(metrica.calcularPuntajePorCobertura(69)).toEqual(8);
   })
+  it("Si la cobertura esta entre 70-79, el puntaje es 12", () =>{
+    const metrica = new Metrica();
+    expect(metrica.calcularPuntajePorCobertura(71)).toEqual(12);
+  })
 });
 

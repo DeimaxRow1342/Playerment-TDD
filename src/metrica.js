@@ -40,6 +40,8 @@ class Metrica {
     calcularPuntajePorCobertura(cobertura){
         if(cobertura < 70 && cobertura > 0)
             return 8;
+        else if(cobertura >= 70 && cobertura < 80)
+            return 12;
         return 0;
     }
 }
