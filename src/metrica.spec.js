@@ -1,6 +1,6 @@
-import Practicas from "./datosPracticas.js";
+import Practicas from "./practicas.js";
 import Metrica from "./metrica.js";
-import MetricaArray from "./metricasArray.js";
+import MetricaArray from "./moduloMetricas.js";
 
 describe("Crear un programa gamificado para TDDLab", () => {
   it("Si ingreso el nombre de una practica, me regresa el nombre", () => {
