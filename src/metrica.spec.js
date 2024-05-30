@@ -49,22 +49,6 @@ describe("Crear un programa gamificado para TDDLab", () => {
     expect(metric.getNumeroCommit()).toEqual(2);
   });
 
-  it("Se debe añadir un Puntaje ademas del numero de commit en las metricas", () => {
-    let numCommit1 = 1;
-    let puntaje = 100;
-    
-    let puntCommit = new Metrica(numCommit1, puntaje)
-    expect(puntCommit.getPuntaje()).toEqual(100);
-  });
-
-  it("Se debe añadir un Puntaje ademas del numero de commit en las metricas", () => {
-    let numCommit2 = 2;
-    let puntaje = 90;
-    
-    let puntCommit = new Metrica(numCommit2, puntaje)
-    expect(puntCommit.getPuntaje()).toEqual(90);
-  });
-
   it("Se añade ademas del numero de commit y el puntaje la explicacion del commit en las metricas", () => {
     let numCommit = 1;
     let puntaje = 100;

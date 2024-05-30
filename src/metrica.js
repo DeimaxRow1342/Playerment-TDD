@@ -22,21 +22,11 @@ class Metrica {
     cargarMetricas(pruebas, cobertura){
         this.pruebas = pruebas;
         this.cobertura = cobertura;
-        this.puntaje = this.calcularPuntajePorCobertura(cobertura);
+        this.puntaje = this.calcularPuntaje(cobertura);
     }
 
-    calcularPuntaje(puntaje){
-        if(this.pruebas >= 1 && this.pruebas <= 5){
-            puntaje += 1000;
-        }
-        else if (this.pruebas > 5){
-            puntaje += 1000;
-            let contador = this.pruebas-5;
-            for(contador; contador>0; contador--){
-                puntaje -= 50;
-            }
-        }
-        return puntaje;
+    calcularPuntaje(cobertura){
+        this.calcularPuntajePorCobertura(cobertura);
     }
     calcularPuntajePorCobertura(cobertura){
         if(cobertura < 70 && cobertura > 0)
