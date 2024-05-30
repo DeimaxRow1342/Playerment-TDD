@@ -1,6 +1,5 @@
 import Practicas from "./practicas.js";
 import Metrica from "./metrica.js";
-import MetricaArray from "./moduloMetricas.js";
 import ModuloMetricas from "./moduloMetricas.js";
 
 describe("Crear un programa gamificado para TDDLab", () => {
@@ -51,103 +50,118 @@ describe("Crear un programa gamificado para TDDLab", () => {
 
   it("Se añade ademas del numero de commit y el puntaje la explicacion del commit en las metricas", () => {
     let numCommit = 1;
-    let puntaje = 100;
     let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
     
-    let explica = new Metrica(numCommit, puntaje,explicacion)
+    let explica = new Metrica(numCommit, explicacion)
     expect(explica.getExplicacion()).toEqual("Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla");
   });
   
   it("Se añade ademas del numero de commit y el puntaje la explicacion de un segundo commit en las metricas", () => {
     let numCommit = 2;
-    let puntaje = 90;
     let explicacion = "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz";
     
-    let explica = new Metrica(numCommit, puntaje, explicacion)
+    let explica = new Metrica(numCommit, explicacion)
     expect(explica.getExplicacion()).toEqual("Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz");
   });
 
   it("Se logra añadir un commit dentro un array de metricas", () => {
     let numCommit = 1;
-    let puntaje = 100;
     let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
-    let metricArray = new MetricaArray();
+    let metricArray = new ModuloMetricas();
     expect(metricArray.desplegarMetrica()).toEqual([]);
   });
 
   it("Se logra mostrar un commit en el array de metricas", () => {
     let numCommit = 1;
-    let puntaje = 100;
     let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
-    let metricArray = new MetricaArray();
-    metricArray.anadirMetricaCommit(numCommit,puntaje,explicacion);
+    let pruebas = 0;
+    let cobertura = 0;
+    let metricArray = new ModuloMetricas();
+    metricArray.anadirMetricaCommit(numCommit, explicacion, pruebas, cobertura);
 
-    let arrayDeMetrica = [{
+    let arrayDeMetrica = {
       numeroCommit: 1,
-      puntaje: 100,
-      explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla"
-    }]
-    expect(metricArray.desplegarMetrica()).toEqual(arrayDeMetrica);
+      puntaje: 0,
+      explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
+      pruebas: 0,
+      cobertura: 0
+    }
+    expect(metricArray.buscarMetricaPorCommit(numCommit)).toEqual(arrayDeMetrica);
   });
 
   it("Se logra mostrar dos commits en un array de metricas", () => {
     let numCommit1 = 1;
-    let puntaje1 = 100;
     let explicacion1 = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
+    let pruebas1 = 0;
+    let cobertura1 = 0;
     
     let numCommit2 = 2;
-    let puntaje2 = 90;
     let explicacion2 = "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz";
+    let pruebas2 = 0;
+    let cobertura2 = 0;
 
-    let metricArray = new MetricaArray();
-    metricArray.anadirMetricaCommit(numCommit1,puntaje1,explicacion1);
-    metricArray.anadirMetricaCommit(numCommit2,puntaje2,explicacion2);
+    let metricArray = new ModuloMetricas();
+    metricArray.anadirMetricaCommit(numCommit1,explicacion1,pruebas1,cobertura1);
+    metricArray.anadirMetricaCommit(numCommit2,explicacion2,pruebas2,cobertura2);
 
     let arrayDeMetrica = [{
       numeroCommit: 1,
-      puntaje: 100,
-      explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla"
+      puntaje: 0,
+      explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
+      pruebas: 0,
+      cobertura: 0
     },
     {
       numeroCommit: 2,
-      puntaje: 90,
-      explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz"
+      puntaje: 0,
+      explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz",
+      pruebas: 0,
+      cobertura: 0
     }]
     expect(metricArray.desplegarMetrica()).toEqual(arrayDeMetrica);
   });
 
   it("Se logra mostrar mas de dos commits en un array de metricas", () => {
     let numCommit1 = 1;
-    let puntaje1 = 100;
     let explicacion1 = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
+    let pruebas1 = 0;
+    let cobertura1 = 0;
     
     let numCommit2 = 2;
-    let puntaje2 = 90;
     let explicacion2 = "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz";
+    let pruebas2 = 0;
+    let cobertura2 = 0;
 
     let numCommit3 = 3;
-    let puntaje3 = 95;
     let explicacion3 = "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3";
+    let pruebas3 = 0;
+    let cobertura3 = 0;
 
-    let metricArray = new MetricaArray();
-    metricArray.anadirMetricaCommit(numCommit1,puntaje1,explicacion1);
-    metricArray.anadirMetricaCommit(numCommit2,puntaje2,explicacion2);
-    metricArray.anadirMetricaCommit(numCommit3,puntaje3,explicacion3);
+    let metricArray = new ModuloMetricas();
+    metricArray.anadirMetricaCommit(numCommit1,explicacion1,pruebas1,cobertura1);
+    metricArray.anadirMetricaCommit(numCommit2,explicacion2,pruebas2,cobertura2);
+    metricArray.anadirMetricaCommit(numCommit3,explicacion3,pruebas3,cobertura3);
 
     let arrayDeMetrica = [{
       numeroCommit: 1,
-      puntaje: 100,
-      explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla"
+      puntaje: 0,
+      explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
+      pruebas: 0,
+      cobertura: 0
     },
     {
       numeroCommit: 2,
-      puntaje: 90,
-      explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz"
+      puntaje: 0,
+      explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz",
+      pruebas: 0,
+      cobertura: 0
     },
     {
       numeroCommit: 3,
-      puntaje: 95,
-      explicacion: "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3"
+      puntaje: 0,
+      explicacion: "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3",
+      pruebas: 0,
+      cobertura: 0
     }]
     expect(metricArray.desplegarMetrica()).toEqual(arrayDeMetrica);
   });

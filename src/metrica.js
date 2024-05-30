@@ -1,5 +1,5 @@
 class Metrica {
-    constructor(numeroCommit, puntaje, explicacion) {
+    constructor(numeroCommit, explicacion) {
         this.numeroCommit = numeroCommit;
         this.puntaje = 0;
         this.explicacion = explicacion;
@@ -26,8 +26,9 @@ class Metrica {
     }
 
     calcularPuntaje(cobertura){
-        this.calcularPuntajePorCobertura(cobertura);
+        return this.calcularPuntajePorCobertura(cobertura);
     }
+
     calcularPuntajePorCobertura(cobertura){
         if(cobertura < 70 && cobertura > 0)
             return 8;
