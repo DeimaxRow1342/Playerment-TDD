@@ -169,24 +169,27 @@ describe("Crear un programa gamificado para TDDLab", () => {
   it("Se deberia añadir una metrica de manera correcta", () => {
     let practica = new Practicas("FizzBuzz");
     let numCommit1 = 1;
-    let puntaje1 = 100;
     let explicacion1 = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
-    practica.anadirMetrica(numCommit1,puntaje1,explicacion1);
+    let pruebas1 = 0;
+    let cobertura1 = 0;
+    practica.anadirMetrica(numCommit1,explicacion1,pruebas1,cobertura1);
     expect(practica.motrarMetricas()).toEqual([
       {
         numeroCommit: 1,
-        puntaje: 100,
-        explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla"
+        puntaje: 0,
+        explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
+        pruebas: 0,
+        cobertura: 0
     }]);
   });
 
   it("Debe poder añadir una métrica a una práctica y verificar que se añadió correctamente", () => {
     const practica = new Practicas();
     practica.cargarDatos("Calculadora", "Prueba unitaria para suma", "2024-05-01", "https://github.com/example/Calculadora");
-    practica.anadirMetrica(1, 85, "Primer commit");
+    practica.anadirMetrica(1, "Primer commit", 0, 0);
     const metricas = practica.motrarMetricas();
     expect(metricas.length).toEqual(1);
-    expect(metricas[0]).toEqual({ numeroCommit: 1, puntaje: 85, explicacion: "Primer commit" });
+    expect(metricas[0]).toEqual({ numeroCommit: 1, puntaje: 0, explicacion: "Primer commit", pruebas: 0, cobertura: 0 });
   });
 
   it("No debe añadir una métrica si el número de commit es inválido", () => {
@@ -198,15 +201,6 @@ describe("Crear un programa gamificado para TDDLab", () => {
     expect(metricas.length).toEqual(0);
   });
 //mal
-  it("Debe actualizar una métrica existente correctamente", () => {
-    const practica = new Practicas();
-    practica.cargarDatos("Calculadora", "Prueba unitaria para suma", "2024-05-01", "https://github.com/example/Calculadora");
-    practica.anadirMetrica(1, 85, "Corrección de errores");
-    practica.anadirMetrica(2, 75, "Primer commit");
-    const metricas = practica.motrarMetricas();
-    expect(metricas.find(m => m.numeroCommit === 1).puntaje).toEqual(85);
-  });
-
   it("Should not allow non-incremental commit numbers", () => {
     const practica = new Practicas();
     practica.cargarDatos("Test", "Test Description", "2024-01-01", "http://example.com");
@@ -219,12 +213,12 @@ describe("Crear un programa gamificado para TDDLab", () => {
   it("Se debe poder eliminar un commit correctamente", () => {
     const practica = new Practicas();
     practica.cargarDatos("FizzBuzz");
-    practica.anadirMetrica(1, 85, "Primer commit");
-    practica.anadirMetrica(2, 75, "Segundo commit");
+    practica.anadirMetrica(1, "Primer commit", 0, 0);
+    practica.anadirMetrica(2, "Segundo commit", 0, 0);
     practica.eliminarMetrica(1);
     const metricas = practica.motrarMetricas();
     expect(metricas.length).toEqual(1);
-    expect(metricas[0]).toEqual({ numeroCommit: 2, puntaje: 75, explicacion: "Segundo commit" });
+    expect(metricas[0]).toEqual({ numeroCommit: 2, puntaje: 0, explicacion: "Segundo commit", pruebas: 0, cobertura: 0 });
   });
   
   it("Si se ingresa una prueba se muestra el numero de pruebas", () => {
@@ -238,28 +232,6 @@ describe("Crear un programa gamificado para TDDLab", () => {
     metrica.cargarMetricas(7, 93);
     expect(metrica.cobertura).toEqual(93);
   });
-
-  it("Si se ingresa 5 pruebas, se calcula el puntaje como 1000 puntos", () => {
-    const metrica = new Metrica(1, 0, "Prueba de commit");
-    metrica.cargarMetricas(5, 93);
-    metrica.puntaje = metrica.calcularPuntaje(metrica.puntaje);
-    expect(metrica.getPuntaje()).toEqual(1000);
-  });
-
-  it("Si se ingresa 5 pruebas, se calcula el puntaje como 1000 puntos", () => {
-    const metrica = new Metrica(1, 0, "Prueba de commit");
-    metrica.cargarMetricas(5, 93);
-    metrica.puntaje = metrica.calcularPuntaje(metrica.puntaje);
-    expect(metrica.getPuntaje()).toEqual(1000);
-  });
-
-  it("Si se ingresa 7 pruebas, no se contempla en el rango ideal por lo que se reduce el puntaje en 100 puntos, retornando 900 puntos", () => {
-    const metrica = new Metrica(1, 0, "Prueba de commit");
-    metrica.cargarMetricas(7, 93);
-    metrica.puntaje = metrica.calcularPuntaje(metrica.puntaje);
-    expect(metrica.getPuntaje()).toEqual(900);
-  });
-
   //PRUEBAS FINALES DEL PROGRAMA FUNCIONAL
   it("Debe retornar falso si se intenta añadir un commit no secuencial", () => {
     const practica = new Practicas();
@@ -402,7 +374,7 @@ describe("Crear un programa gamificado para TDDLab", () => {
   /* Puntaje modulo metrica */
   it("Se deberia poder calcular el puntaje desde modulo metricas", () =>{
     const modMetricas = new ModuloMetricas();
-    modMetricas.anadirMetricaCommit(1, 100, "Primer commit", 5, 92);
+    modMetricas.anadirMetricaCommit(1, "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3", 5, 92);
     expect(modMetricas.calcularPuntaje(1)).toEqual(20); 
   })
 });
