@@ -145,9 +145,6 @@ function ingresarAMetricaDePractica(nombrePractica) {
     const inputNumeroCommit = document.createElement('input');
     inputNumeroCommit.type = 'number';
     inputNumeroCommit.placeholder = 'Número de commit';
-    const inputPuntaje = document.createElement('input');
-    inputPuntaje.type = 'number';
-    inputPuntaje.placeholder = 'Puntaje';
     const inputPrueba = document.createElement('input');
     inputPrueba.type = 'number';
     inputPrueba.placeholder = 'Prueba';
@@ -165,13 +162,12 @@ function ingresarAMetricaDePractica(nombrePractica) {
     btnConfirmMetrica.addEventListener('click', (event) => {
       event.preventDefault();
       const numeroCommit = parseInt(inputNumeroCommit.value);
-      const puntaje = parseInt(inputPuntaje.value);
       const explicacion = inputExplicacion.value;
       const prueba = parseInt(inputPrueba.value);
       const cobertura = parseInt(inputCobertura.value);
 
-      if (!isNaN(numeroCommit) && !isNaN(puntaje) && explicacion) {
-        const result = practicaSeleccionada.anadirMetrica(numeroCommit, puntaje, explicacion, prueba, cobertura);
+      if (!isNaN(numeroCommit) && explicacion) {
+        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura);
         if (result) {
           alert('Commit added successfully.');
         } else {
@@ -186,7 +182,6 @@ function ingresarAMetricaDePractica(nombrePractica) {
     formMetrica.appendChild(inputNumeroCommit);
     formMetrica.appendChild(inputPrueba);
     formMetrica.appendChild(inputCobertura);
-    formMetrica.appendChild(inputPuntaje);
     formMetrica.appendChild(inputExplicacion);
     formMetrica.appendChild(btnConfirmMetrica);
     proyectoContainer.appendChild(formMetrica);
