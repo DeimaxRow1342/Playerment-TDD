@@ -81,6 +81,11 @@ function desplegarFormularioEditar(nombre) {
       const nuevaDescripcion = document.getElementById('nuevaDescripcion').value;
       const nuevaFecha = document.getElementById('nuevaFecha').value;
       const nuevoEnlace = document.getElementById('nuevoEnlace').value;
+      const existePractica = practicas.some(prac => (prac.nombre === nuevoNombre || prac.enlace === nuevoEnlace) && prac !== practica);
+      if (existePractica) {
+        alert("Ya existe un proyecto con el mismo nombre o enlace. Por favor, ingrese un nombre o enlace diferente.");
+        return;
+      }
       practica.editarDatos(nuevoNombre, nuevaDescripcion, nuevaFecha, nuevoEnlace);
       actualizarTablaPracticas();
       modal.style.display = "none";
