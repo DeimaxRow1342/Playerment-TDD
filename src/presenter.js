@@ -77,6 +77,9 @@ function desplegarFormularioEditar(nombre) {
     `;
     formulario.addEventListener('submit', function(event) {
       event.preventDefault();
+      if (!confirm("¿Estás seguro de realizar los cambios?")) {
+        return;
+      }
       const nuevoNombre = document.getElementById('nuevoNombre').value;
       const nuevaDescripcion = document.getElementById('nuevaDescripcion').value;
       const nuevaFecha = document.getElementById('nuevaFecha').value;
