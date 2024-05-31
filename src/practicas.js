@@ -47,6 +47,9 @@ class Practicas{
         this.enlace = null;
     }
   }
+  editarDatos(nuevoNombre){
+    this.nombre = nuevoNombre;
+  }
 
   eliminarMetrica(numeroCommit) {
     this.ModuloMetricas.eliminarMetricaCommit(numeroCommit);

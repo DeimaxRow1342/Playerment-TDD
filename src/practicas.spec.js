@@ -203,5 +203,11 @@ describe("Crear un programa gamificado para TDDLab", () => {
     expect(metrics.length).toEqual(1);
     expect(metrics[0].numeroCommit).toEqual(2);
   });
+  it("debe editar el nombre de una práctica correctamente", () => {
+    const practica = new Practicas();
+    practica.cargarDatos("Calculadora", "Prueba unitaria para suma", "2024-05-01", "https://github.com/example/Calculadora");
+    practica.editarDatos("Totalizador");
+    expect(practica.nombre).toEqual("Totalizador");
+  });
 });
 
