@@ -52,7 +52,50 @@ function eliminarPractica(nombre) {
   else{
     console.log("No se eliminó la práctica");
   }
-
+}
+function desplegarFormularioEditar(nombre) {
+  const practica = practicas.find(practica => practica.nombre === nombre);
+  if (practica) {
+    const modal = document.getElementById('myModal');
+    modal.style.display = "block";
+    const formularioExistente = document.getElementById('formulario-editar');
+    if (formularioExistente) {
+      formularioExistente.remove();
+    }
+    const formulario = document.createElement('form');
+    formulario.id = 'formulario-editar';
+    formulario.innerHTML = `
+      <label for="nuevoNombre">Nombre:</label>
+      <input type="text" id="nuevoNombre" value="${practica.nombre}">
+      <label for="nuevaDescripcion">Descripción:</label>
+      <input type="text" id="nuevaDescripcion" value="${practica.descripcion}">
+      <label for="nuevaFecha">Fecha:</label>
+      <input type="date" id="nuevaFecha" value="${practica.fecha}">
+      <label for="nuevoEnlace">Enlace:</label>
+      <input type="text" id="nuevoEnlace" value="${practica.enlace}">
+      <button type="submit">Guardar</button>
+    `;
+    formulario.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const nuevoNombre = document.getElementById('nuevoNombre').value;
+      const nuevaDescripcion = document.getElementById('nuevaDescripcion').value;
+      const nuevaFecha = document.getElementById('nuevaFecha').value;
+      const nuevoEnlace = document.getElementById('nuevoEnlace').value;
+      practica.editarDatos(nuevoNombre, nuevaDescripcion, nuevaFecha, nuevoEnlace);
+      actualizarTablaPracticas();
+      modal.style.display = "none";
+    });
+    document.getElementById('contenedorFormulario').appendChild(formulario);
+    const span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
 }
 
 function buscarPracticaPorNombre() {
@@ -79,6 +122,7 @@ function actualizarTablaPracticas() {
       <td>
         <button onclick="eliminarPractica('${practica.nombre}')">Eliminar</button>
         <button onclick="ingresarAMetricaDePractica('${practica.nombre}')">Ver Métricas</button>
+        <button onclick="desplegarFormularioEditar('${practica.nombre}')">Editar</button>
       </td>
     </tr>
   `).join('');
@@ -189,4 +233,5 @@ function ingresarAMetricaDePractica(nombrePractica) {
 }
 
 window.eliminarPractica = eliminarPractica;
+window.desplegarFormularioEditar = desplegarFormularioEditar;
 window.ingresarAMetricaDePractica = ingresarAMetricaDePractica;
