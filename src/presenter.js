@@ -206,6 +206,17 @@ function ingresarAMetricaDePractica(nombrePractica) {
     const inputExplicacion = document.createElement('input');
     inputExplicacion.type = 'text';
     inputExplicacion.placeholder = 'Explicación';
+
+    const selectTipo = document.createElement('select'); 
+    const optionConvencional = document.createElement('option');
+    optionConvencional.value = 'convencional';
+    optionConvencional.textContent = 'Convencional';
+    const optionRefactorizacion = document.createElement('option');
+    optionRefactorizacion.value = 'refactoring';
+    optionRefactorizacion.textContent = 'Refactorización';
+    selectTipo.appendChild(optionConvencional);
+    selectTipo.appendChild(optionRefactorizacion);
+
     const btnConfirmMetrica = document.createElement('button');
     btnConfirmMetrica.textContent = 'Agregar Métrica';
 
@@ -217,9 +228,10 @@ function ingresarAMetricaDePractica(nombrePractica) {
       const explicacion = inputExplicacion.value;
       const prueba = parseInt(inputPrueba.value);
       const cobertura = parseInt(inputCobertura.value);
+      const tipo = selectTipo.value;
 
       if (!isNaN(numeroCommit) && explicacion) {
-        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura);
+        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, tipo);
         if (result) {
           alert('Commit added successfully.');
         } else {
@@ -235,6 +247,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
     formMetrica.appendChild(inputPrueba);
     formMetrica.appendChild(inputCobertura);
     formMetrica.appendChild(inputExplicacion);
+    formMetrica.appendChild(selectTipo); 
     formMetrica.appendChild(btnConfirmMetrica);
     proyectoContainer.appendChild(formMetrica);
   }

@@ -25,10 +25,10 @@ class Practicas{
   }
   
 
-  anadirMetrica(numeroCommit, explicacion, pruebas, cobertura) {
+  anadirMetrica(numeroCommit, explicacion, pruebas, cobertura, tipo) {
     // Validar que el número de commit sea exactamente uno más que el último
     if (numeroCommit === this.lastCommitNumber + 1) {
-        this.ModuloMetricas.anadirMetricaCommit(numeroCommit, explicacion, pruebas, cobertura);
+        this.ModuloMetricas.anadirMetricaCommit(numeroCommit, explicacion, pruebas, cobertura, tipo);
         this.lastCommitNumber = numeroCommit; // Actualizar el último número de commit
         return true;
     }
