@@ -63,5 +63,13 @@ describe("Crear un programa gamificado para TDDLab", () => {
     const metrica = new Metrica();
     expect(metrica.calcularPuntajePorCobertura(91)).toEqual(20);
   })
+  it("deberia devolver el tipo de la metrica que por defecto es convencional", () => {
+    const metrica = new Metrica();
+    expect(metrica.getTipo()).toEqual('convencional');
+  });
+  it("Si paso el tipo de refactoring, deberia devolver el tipo de la metrica", () => {
+    const metrica = new Metrica(1, 'Se refactoriza el codigo', 'refactoring');
+    expect(metrica.getTipo()).toEqual('refactoring');
+  });
 });
 

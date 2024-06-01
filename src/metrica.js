@@ -1,10 +1,11 @@
 class Metrica {
-    constructor(numeroCommit, explicacion) {
+    constructor(numeroCommit, explicacion, tipo = 'convencional') {
         this.numeroCommit = numeroCommit;
         this.puntaje = 0;
         this.explicacion = explicacion;
         this.pruebas = null;
         this.cobertura = null;
+        this.tipo = tipo;
     }
 
     getNumeroCommit() {
@@ -17,6 +18,10 @@ class Metrica {
 
     getExplicacion() {
         return this.explicacion;
+    }
+
+    getTipo() {
+        return this.tipo;
     }
 
     cargarMetricas(pruebas, cobertura){

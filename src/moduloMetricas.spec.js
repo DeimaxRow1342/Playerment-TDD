@@ -21,7 +21,8 @@ describe("Crear un programa gamificado para TDDLab", () => {
           puntaje: 0,
           explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error",
           pruebas: 0,
-          cobertura: 0
+          cobertura: 0,
+          tipo: 'convencional'
         }
         expect(metricArray.buscarMetricaPorCommit(numCommit)).toEqual(arrayDeMetrica);
     });
@@ -39,7 +40,8 @@ describe("Crear un programa gamificado para TDDLab", () => {
           puntaje: 0,
           explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error",
           pruebas: 0,
-          cobertura: 0
+          cobertura: 0,
+          tipo: 'convencional'
         }
         expect(metricArray.buscarMetricaPorCommit(numCommit)).toEqual(arrayDeMetrica);
     });
@@ -79,7 +81,8 @@ describe("Crear un programa gamificado para TDDLab", () => {
           puntaje: 0,
           explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
           pruebas: 0,
-          cobertura: 0
+          cobertura: 0,
+          tipo: 'convencional'
         }
         expect(metricArray.buscarMetricaPorCommit(numCommit)).toEqual(arrayDeMetrica);
     });
