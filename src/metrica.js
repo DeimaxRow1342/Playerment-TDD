@@ -25,9 +25,15 @@ class Metrica {
     }
 
     cargarMetricas(pruebas, cobertura){
-        this.pruebas = pruebas;
-        this.cobertura = cobertura;
-        this.puntaje = this.calcularPuntaje(cobertura);
+        if(this.tipo == 'convencional'){
+            this.pruebas = pruebas;
+            this.cobertura = cobertura;
+            this.puntaje = this.calcularPuntaje(cobertura);
+        } else {
+            this.pruebas = null;
+            this.cobertura = null;
+            this.puntaje = 0;
+        }
     }
 
     calcularPuntaje(cobertura){
