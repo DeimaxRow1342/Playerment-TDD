@@ -44,6 +44,9 @@ class Metrica {
         if (pruebas === 0) {
             return 0;
         }
+        else {
+            return 20;
+        }
     }
     calcularPuntajePorCobertura(cobertura){
         if(cobertura < 70 && cobertura > 0)

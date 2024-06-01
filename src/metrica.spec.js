@@ -86,7 +86,13 @@ describe("Crear un programa gamificado para TDDLab", () => {
 });
 //puntaje de pruebas agregadas
 it('debe devolver 0 si las pruebas agregadas son 0', () => {
-  const metrica = new Metrica(0, 'explicacion');
+  const metrica = new Metrica();
   expect(metrica.calcularPuntajePorPruebas(0)).toBe(0);
 });
+it('debe devolver 20 si hay un commit con pruebas', () => {
+  const metrica = new Metrica();
+  metrica.pruebas = 1;
+  expect(metrica.calcularPuntajePorPruebas(1)).toBe(20);
+});
+
 
