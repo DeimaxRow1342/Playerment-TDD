@@ -230,6 +230,16 @@ function ingresarAMetricaDePractica(nombrePractica) {
     selectTipo.appendChild(optionConvencional);
     selectTipo.appendChild(optionRefactorizacion);
 
+    selectTipo.addEventListener('change', function() {
+      if (selectTipo.value === 'refactoring') {
+        inputPrueba.style.display = 'none';
+        inputCobertura.style.display = 'none';
+      } else {
+        inputPrueba.style.display = 'block';
+        inputCobertura.style.display = 'block';
+      }
+    });
+
     const btnConfirmMetrica = document.createElement('button');
     btnConfirmMetrica.textContent = 'Agregar Métrica';
 
