@@ -208,6 +208,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
     inputExplicacion.placeholder = 'Explicación';
 
     const selectTipo = document.createElement('select'); 
+    selectTipo.style.width = '100%';
     const optionConvencional = document.createElement('option');
     optionConvencional.value = 'convencional';
     optionConvencional.textContent = 'Convencional';
@@ -231,6 +232,8 @@ function ingresarAMetricaDePractica(nombrePractica) {
       const tipo = selectTipo.value;
 
       if (!isNaN(numeroCommit) && explicacion) {
+        
+        console.log(numeroCommit, explicacion, prueba, cobertura, tipo);
         const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, tipo);
         if (result) {
           alert('Commit added successfully.');

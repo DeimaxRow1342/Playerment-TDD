@@ -12,10 +12,11 @@ describe("Crear un programa gamificado para TDDLab", () => {
         let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
         let pruebas = 0;
         let cobertura = 0;
+        let tipo = 'convencional';
         let metricArray = new ModuloMetricas();
-        metricArray.anadirMetricaCommit(numCommit, explicacion, pruebas, cobertura);
+        metricArray.anadirMetricaCommit(numCommit, explicacion, pruebas, cobertura, tipo);
         let explicacionNueva = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error";
-        metricArray.anadirMetricaCommit(numCommit, explicacionNueva, pruebas, cobertura);
+        metricArray.anadirMetricaCommit(numCommit, explicacionNueva, pruebas, cobertura, tipo);
         let arrayDeMetrica = {
           numeroCommit: 1,
           puntaje: 0,
@@ -31,10 +32,11 @@ describe("Crear un programa gamificado para TDDLab", () => {
         let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
         let pruebas = 0;
         let cobertura = 0;
+        let tipo = 'convencional';
         let metricArray = new ModuloMetricas();
-        metricArray.anadirMetricaCommit(numCommit, explicacion, pruebas, cobertura);
+        metricArray.anadirMetricaCommit(numCommit, explicacion, pruebas, cobertura, tipo);
         let explicacionNueva = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error";
-        metricArray.actualizarMetricaExistente(metricArray.buscarMetricaPorCommit(numCommit), explicacionNueva);
+        metricArray.actualizarMetricaExistente(metricArray.buscarMetricaPorCommit(numCommit), explicacionNueva, tipo);
         let arrayDeMetrica = {
           numeroCommit: 1,
           puntaje: 0,
@@ -107,14 +109,16 @@ describe("Crear un programa gamificado para TDDLab", () => {
           puntaje: 0,
           explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
           pruebas: 0,
-          cobertura: 0
+          cobertura: 0,
+          tipo: 'convencional'
         },
         {
           numeroCommit: 2,
           puntaje: 0,
           explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz",
           pruebas: 0,
-          cobertura: 0
+          cobertura: 0,
+          tipo: 'convencional'
         }]
         expect(metricArray.desplegarMetrica()).toEqual(arrayDeMetrica);
     });
@@ -145,21 +149,24 @@ describe("Crear un programa gamificado para TDDLab", () => {
           puntaje: 0,
           explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
           pruebas: 0,
-          cobertura: 0
+          cobertura: 0,
+          tipo: 'convencional'
         },
         {
           numeroCommit: 2,
           puntaje: 0,
           explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz",
           pruebas: 0,
-          cobertura: 0
+          cobertura: 0,
+          tipo: 'convencional'
         },
         {
           numeroCommit: 3,
           puntaje: 0,
           explicacion: "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3",
           pruebas: 0,
-          cobertura: 0
+          cobertura: 0,
+          tipo: 'convencional'
         }]
         expect(metricArray.desplegarMetrica()).toEqual(arrayDeMetrica);
     });

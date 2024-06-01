@@ -8,7 +8,7 @@ class ModuloMetricas {
     anadirMetricaCommit(numeroCommit, explicacion, pruebas, cobertura, tipo) {
         const metricaExistente = this.buscarMetricaPorCommit(numeroCommit);
         if (metricaExistente) {
-            this.actualizarMetricaExistente(metricaExistente, explicacion);
+            this.actualizarMetricaExistente(metricaExistente, explicacion, tipo);
         } else {
             this.agregarNuevaMetrica(numeroCommit, explicacion, pruebas, cobertura, tipo);
         }
@@ -18,8 +18,9 @@ class ModuloMetricas {
         return this.arregloMetrica.find(metrica => metrica.numeroCommit === numeroCommit);
     }
 
-    actualizarMetricaExistente(metrica, explicacion) {
+    actualizarMetricaExistente(metrica, explicacion, tipo) {
         metrica.explicacion = explicacion;
+        metrica.tipo = tipo;
     }
 
     agregarNuevaMetrica(numeroCommit, explicacion, pruebas, cobertura, tipo) {
@@ -38,7 +39,8 @@ class ModuloMetricas {
             pruebas: metrica.pruebas,
             cobertura: metrica.cobertura,
             puntaje: metrica.getPuntaje(),
-            explicacion: metrica.getExplicacion()
+            explicacion: metrica.getExplicacion(),
+            tipo: metrica.getTipo()
         };
     }
 

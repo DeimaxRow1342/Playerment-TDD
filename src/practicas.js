@@ -45,13 +45,15 @@ class Practicas{
         this.descripcion = null;
         this.fecha = null;
         this.enlace = null;
+        this.tipo = null;
     }
   }
-  editarDatos(nuevoNombre, nuevaDescripcion, nuevaFecha, nuevoEnlace){
+  editarDatos(nuevoNombre, nuevaDescripcion, nuevaFecha, nuevoEnlace, nuevoTipo){
     this.nombre = nuevoNombre;
     this.descripcion = nuevaDescripcion;
     this.fecha = nuevaFecha;
     this.enlace = nuevoEnlace;
+    this.tipo = nuevoTipo;
   }
 
   eliminarMetrica(numeroCommit) {
