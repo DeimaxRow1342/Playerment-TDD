@@ -101,5 +101,9 @@ it('debe devolver 16 si entre el 80-99% de los commits tienen pruebas', () => {
   const metrica = new Metrica(5, 'explicacion');
   expect(metrica.calcularPuntajePorPruebas(4)).toBe(16);
 });
+it('debe devolver 20 si el 100% de los commits tienen pruebas', () => {
+  const metrica = new Metrica(5, 'explicacion');
+  expect(metrica.calcularPuntajePorPruebas(5)).toBe(20);
+});
 
 

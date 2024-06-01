@@ -51,6 +51,10 @@ class Metrica {
                 return 12;
             } else if (porcentajeConPruebas >= 80 && porcentajeConPruebas < 100) {
                 return 16;
+            }else if (porcentajeConPruebas === 100) {
+                return 20;
+            } else {
+                return 0;
             }
         }
     }
