@@ -42,11 +42,13 @@ class Metrica {
     }
     calcularPuntajePorPruebas(pruebas) {
         if (pruebas === 0) {
-            return 0; 
+            return 0;
         } else {
             const porcentajeConPruebas = (pruebas / this.numeroCommit) * 100;
             if (porcentajeConPruebas < 60) {
                 return 8;
+            } else if (porcentajeConPruebas >= 60 && porcentajeConPruebas < 80) {
+                return 12;
             } 
         }
     }
