@@ -36,10 +36,15 @@ class Metrica {
         }
     }
 
-    calcularPuntaje(cobertura){
+    calcularPuntaje(cobertura,){
         return this.calcularPuntajePorCobertura(cobertura);
+       
     }
-
+    calcularPuntajePorPruebas(pruebas) {
+        if (pruebas === 0) {
+            return 0;
+        }
+    }
     calcularPuntajePorCobertura(cobertura){
         if(cobertura < 70 && cobertura > 0)
             return 8;
