@@ -42,12 +42,15 @@ class Metrica {
     }
     calcularPuntajePorPruebas(pruebas) {
         if (pruebas === 0) {
-            return 0;
-        }
-        else {
-            return 20;
+            return 0; 
+        } else {
+            const porcentajeConPruebas = (pruebas / this.numeroCommit) * 100;
+            if (porcentajeConPruebas < 60) {
+                return 8;
+            } 
         }
     }
+    
     calcularPuntajePorCobertura(cobertura){
         if(cobertura < 70 && cobertura > 0)
             return 8;
