@@ -105,7 +105,11 @@ it('debe devolver 20 si el 100% de los commits tienen pruebas', () => {
   expect(metrica.calcularPuntajePorPruebas(5)).toBe(20);
   
 });
-
+it("Debe calcular el puntaje total sumando pruebas y cobertura", () => {
+  const metrica = new Metrica(5, 'explicacion');
+  
+  expect(metrica.calcularPuntaje(85,3)).toEqual(28); 
+})
 
 
 });
