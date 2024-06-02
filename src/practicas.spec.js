@@ -234,5 +234,11 @@ describe("Crear un programa gamificado para TDDLab", () => {
     expect(practica.fecha).toEqual("2023-07-03");
     expect(practica.enlace).toEqual("https://github.com/example/Totalizador");
   });
+  
+  it('debería retornar "no existen commits" cuando el número de commits es 0', () => {
+    const practica = new Practicas();
+    const recomendacion = practica.obtenerRecomendacion();
+    expect(recomendacion).toEqual("no existen commits");
+  });
 });
 

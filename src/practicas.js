@@ -63,7 +63,14 @@ class Practicas{
   contarPruebas() {
     return this.pruebas.length;
   }
+  obtenerRecomendacion() {
+    const metricas = this.motrarMetricas();
+    let recomendaciones = [];
 
+    if (metricas.length === 0) {
+      return "No hay métricas disponibles para generar una recomendación.";
+    }
+  }
   
 }
 
