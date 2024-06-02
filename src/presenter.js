@@ -157,6 +157,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
     tituloPracticaElement.textContent = `Práctica: ${nombrePractica}`;
 
     proyectoContainer.appendChild(tituloPracticaElement);
+    
 
     const btnVolver = document.createElement('button');
     btnVolver.textContent = 'Volver a la lista de prácticas';
@@ -204,6 +205,8 @@ function ingresarAMetricaDePractica(nombrePractica) {
 
     proyectoContainer.appendChild(contenedorMetricasConvencional);
     proyectoContainer.appendChild(contenedorMetricasRefactorizacion);
+    
+    
 
     const formMetrica = document.createElement('form');
     const inputNumeroCommit = document.createElement('input');
@@ -238,6 +241,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
         inputPrueba.style.display = 'block';
         inputCobertura.style.display = 'block';
       }
+      
     });
 
     const btnConfirmMetrica = document.createElement('button');
@@ -265,6 +269,14 @@ function ingresarAMetricaDePractica(nombrePractica) {
         alert('Please enter valid values.');
       }
     });
+    //boton para ver recomendaciones
+    const btnVerRecomendaciones = document.createElement('button');
+    btnVerRecomendaciones.textContent = 'Ver recomendaciones del proyecto';
+    btnVerRecomendaciones.addEventListener('click', function() {
+      // Lógica para ver recomendaciones del proyecto
+      alert('Funcionalidad para ver recomendaciones del proyecto aún no implementada.');
+    });
+    proyectoContainer.appendChild(btnVerRecomendaciones);
 
     formMetrica.appendChild(inputNumeroCommit);
     formMetrica.appendChild(inputPrueba);
