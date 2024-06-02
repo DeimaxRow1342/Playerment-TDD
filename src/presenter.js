@@ -273,8 +273,8 @@ function ingresarAMetricaDePractica(nombrePractica) {
     const btnVerRecomendaciones = document.createElement('button');
     btnVerRecomendaciones.textContent = 'Ver recomendaciones del proyecto';
     btnVerRecomendaciones.addEventListener('click', function() {
-      // Lógica para ver recomendaciones del proyecto
-      alert('Funcionalidad para ver recomendaciones del proyecto aún no implementada.');
+      const recomendacion = practicaSeleccionada.obtenerRecomendacion();
+      alert(recomendacion);
     });
     proyectoContainer.appendChild(btnVerRecomendaciones);
 

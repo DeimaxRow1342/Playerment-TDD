@@ -68,7 +68,7 @@ class Practicas{
     let recomendaciones = [];
 
     if (metricas.length === 0) {
-      return "No hay métricas disponibles para generar una recomendación.";
+      return "no existen commits";
     }
   }
   
