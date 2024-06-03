@@ -270,6 +270,20 @@ describe("Crear un programa gamificado para TDDLab", () => {
         { nombre: "Ejercicio1", puntaje: 32 } 
     ]);
 });
+test('debería mostrar la posición relativa en el ranking', () => {
+  const practicas = new Practicas();
+  const otraPractica = new Practicas();
+  practicas.cargarDatos("Ejercicio1", "Descripción1", "2024-01-01", "http://link1.com");
+  otraPractica.cargarDatos("Ejercicio2", "Descripción2", "2024-01-02", "http://link2.com");
+
+  practicas.anadirMetrica(1, "Commit1", 10, 80, "convencional");
+  otraPractica.anadirMetrica(1, "Commit1", 5, 70, "convencional");
+
+  const ranking = [practicas, otraPractica].map(p => p.generarRanking());
+  const posicion = practicas.obtenerPosicionEnRanking(ranking);
+
+  expect(posicion).toBe(1); // Ejercicio1 debería estar primero
+});
 
 
 

@@ -82,6 +82,10 @@ class Practicas{
     const puntajeTotal = metricas.reduce((total, metrica) => total + (metrica.puntaje || 0), 0);
     return [{ nombre: this.nombre, puntaje: puntajeTotal }];
   }
+  obtenerPosicionEnRanking() {
+    const ranking = this.generarRanking();
+    return ranking.findIndex((item) => item.nombre === this.nombre) + 1;
+  }
   
 }
 
