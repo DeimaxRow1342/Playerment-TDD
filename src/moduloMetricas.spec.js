@@ -24,7 +24,7 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
           pruebas: 0,
           cantidadLineas: 10,
           cobertura: 0,
-          puntaje: 16,
+          puntaje: 28,
           explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error",
           tipo: 'convencional'
       }
@@ -47,7 +47,7 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
           pruebas: 0,
           cantidadLineas: 10,
           cobertura: 0,
-          puntaje: 16,
+          puntaje: 28,
           explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error",
           tipo: 'convencional'
       }

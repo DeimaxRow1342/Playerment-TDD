@@ -114,10 +114,15 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
     const puntajeEsperado = metrica.calcularPuntaje(85, 50, 3); // Ajustado para incluir cantidadLineas = 50
     expect(puntajeEsperado).toEqual(36);
   });
-
+//Calculo de Porcentaje en base a cantida de lineas
   it("Debe calcular el puntaje con 20 pts para un commit con menos de 20 lineas",() => {
     const metrica = new Metrica();
     expect(metrica.calcularPuntajePorCantidadLineas(0)).toEqual(0);
+  })
+
+  it("Debe calcular el puntaje con 20 pts para un commit con menos de 20 lineas",() => {
+    const metrica = new Metrica();
+    expect(metrica.calcularPuntajePorCantidadLineas(19)).toEqual(20);
   })
 
 });

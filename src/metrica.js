@@ -42,11 +42,14 @@ class Metrica {
        
     }
 
-    calcularPuntajePorCantidadLineas(cantidadLineas){
-        if(cantidadLineas < 60 && cantidadLineas > 0){
+    calcularPuntajePorCantidadLineas(cantidadLineas) {
+        if (cantidadLineas <= 0) {
+            return 0;
+        } else if (cantidadLineas < 20) {
+            return 20;
+        }   else {
             return 8;
         }
-        return 0;
     }
 
     calcularPuntajePorPruebas(pruebas) {
