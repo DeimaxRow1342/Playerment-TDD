@@ -73,6 +73,8 @@ class Practicas{
 
     if (numeroCommits > 0 && numeroCommits === this.contarPruebas()) {
       return "el numero de pruebas agregadas fue agregada de buena manera, buen trabajo!";
+    }else if (numeroCommits > 0 && numeroCommits !== this.contarPruebas()) {
+      return "el numero de pruebas agregadas fue implementada de muy mala forma, ten cuidado!";
     }
 
   }

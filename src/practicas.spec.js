@@ -249,6 +249,15 @@ describe("Crear un programa gamificado para TDDLab", () => {
     const recomendacion = practica.obtenerRecomendacion();
     expect(recomendacion).toEqual("el numero de pruebas agregadas fue agregada de buena manera, buen trabajo!");
   });
+  it('debería retornar "el numero de pruebas agregadas fue implementada de muy mala forma, ten cuidado!" cuando el número de commits es distinto al número de pruebas', () => {
+    const practica = new Practicas();
+    practica.pruebas = ['prueba1', 'prueba2', 'prueba3']; // Agregar pruebas
+    practica.anadirMetrica(1, "Explicación 1", [], 90, "tipo1");
+    practica.anadirMetrica(2, "Explicación 2", [], 90, "tipo2");
+  
+    const recomendacion = practica.obtenerRecomendacion();
+    expect(recomendacion).toEqual("el numero de pruebas agregadas fue implementada de muy mala forma, ten cuidado!");
+  });
 
 });
 
