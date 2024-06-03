@@ -139,4 +139,9 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
     const metrica = new Metrica();
     expect(metrica.calcularPuntajePorCantidadLineas(70)).toEqual(8);
   });
+
+  it("Debe devolver 0 para un commit con un numero negativo de lineas", () => {
+    const metrica = new Metrica();
+    expect(metrica.calcularPuntajePorCantidadLineas(-10)).toEqual(0);
+  });
 });
