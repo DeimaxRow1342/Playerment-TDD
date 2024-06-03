@@ -49,6 +49,8 @@ class Metrica {
             return 20;
         } else if (cantidadLineas >= 20 && cantidadLineas <= 40) {
             return 16;
+        } else if (cantidadLineas > 40 && cantidadLineas <= 60) {
+            return 12;
         } else {
             return 8;
         }

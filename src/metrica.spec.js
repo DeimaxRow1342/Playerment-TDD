@@ -112,7 +112,7 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
   it("Debe calcular el puntaje total sumando pruebas y cobertura", () => {
     const metrica = new Metrica(5, 'explicacion');
     const puntajeEsperado = metrica.calcularPuntaje(85, 50, 3); // Ajustado para incluir cantidadLineas = 50
-    expect(puntajeEsperado).toEqual(36);
+    expect(puntajeEsperado).toEqual(40);
   });
 //Calculo de Porcentaje en base a cantida de lineas
   it("Debe calcular el puntaje con 20 pts para un commit con menos de 20 lineas",() => {
@@ -129,4 +129,9 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
     const metrica = new Metrica();
     expect(metrica.calcularPuntajePorCantidadLineas(30)).toEqual(16);
   });
+
+  it("Debe calcular el puntaje con 12 pts para un commit con 40 a 60 lineas", () => {
+    const metrica = new Metrica();
+    expect(metrica.calcularPuntajePorCantidadLineas(50)).toEqual(12);
+});
 });
