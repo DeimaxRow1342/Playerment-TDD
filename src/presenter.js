@@ -193,6 +193,7 @@ function mostrarDetalle(nombre) {
             <th>Commits</th>
             <th>Pruebas</th>
             <th>Cobertura</th>
+            <th>Cantidad de Lineas</th>
             <th>Puntaje</th>
             <th>Explicación</th>
             <th>Tipo</th>
@@ -204,6 +205,7 @@ function mostrarDetalle(nombre) {
               <td>${metrica.numeroCommit}</td>
               <td>${metrica.pruebas}</td>
               <td>${metrica.cobertura}</td>
+              <td>${metrica.cantidadLineas}</td>
               <td>${metrica.puntaje}</td>
               <td>${metrica.explicacion}</td>
               <td>${metrica.tipo}</td>
@@ -270,7 +272,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
     metricasPractica.forEach(metrica => {
       const metricaItem = document.createElement('li');
       if (metrica.tipo === 'convencional') {
-        metricaItem.textContent = `Commit: ${metrica.numeroCommit}, Numero de pruebas: ${metrica.pruebas}, Porcentaje de cobertura: ${metrica.cobertura}, Puntaje: ${metrica.puntaje}, Explicación: ${metrica.explicacion}`;
+        metricaItem.textContent = `Commit: ${metrica.numeroCommit}, Numero de pruebas: ${metrica.pruebas}, Porcentaje de cobertura: ${metrica.cobertura}, Cantidad de Lineas: ${metrica.cantidadLineas}, Puntaje: ${metrica.puntaje}, Explicación: ${metrica.explicacion}`;
         listaMetricasConvencional.appendChild(metricaItem);
       } else {
         metricaItem.textContent = `Commit: ${metrica.numeroCommit}, Explicación: ${metrica.explicacion}`;
@@ -304,6 +306,9 @@ function ingresarAMetricaDePractica(nombrePractica) {
     const inputCobertura = document.createElement('input');
     inputCobertura.type = 'number';
     inputCobertura.placeholder = 'Cobertura';
+    const inputCantidadLineas = document.createElement('input'); // Nueva línea para cantidad de líneas de código
+    inputCantidadLineas.type = 'number'; // Tipo número para asegurar que se ingresen solo números
+    inputCantidadLineas.placeholder = 'Cantidad de líneas de código'; // Placeholder para guiar al usuario
     const inputExplicacion = document.createElement('input');
     inputExplicacion.type = 'text';
     inputExplicacion.placeholder = 'Explicación';
@@ -323,9 +328,11 @@ function ingresarAMetricaDePractica(nombrePractica) {
       if (selectTipo.value === 'refactoring') {
         inputPrueba.style.display = 'none';
         inputCobertura.style.display = 'none';
+        inputCantidadLineas.style.display = 'none'; // Ocultar el campo de cantidad de líneas para refactorización
       } else {
         inputPrueba.style.display = 'block';
         inputCobertura.style.display = 'block';
+        inputCantidadLineas.style.display = 'block'; // Mostrar el campo de cantidad de líneas para convencional
       }
       
     });
@@ -342,10 +349,11 @@ function ingresarAMetricaDePractica(nombrePractica) {
       const explicacion = inputExplicacion.value;
       const prueba = parseInt(inputPrueba.value);
       const cobertura = parseInt(inputCobertura.value);
+      const cantidadLineas = parseInt(inputCantidadLineas.value); // Obtener el valor de la cantidad de líneas
       const tipo = selectTipo.value;
 
       if (!isNaN(numeroCommit) && explicacion) {
-        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, tipo);
+        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, cantidadLineas, tipo);
         if (result) {
           alert('Commit added successfully.');
         } else {
@@ -370,6 +378,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
     formMetrica.appendChild(inputNumeroCommit);
     formMetrica.appendChild(inputPrueba);
     formMetrica.appendChild(inputCobertura);
+    formMetrica.appendChild(inputCantidadLineas); // Agregar el input de cantidad de líneas
     formMetrica.appendChild(inputExplicacion);
     formMetrica.appendChild(selectTipo); 
     formMetrica.appendChild(btnConfirmMetrica);

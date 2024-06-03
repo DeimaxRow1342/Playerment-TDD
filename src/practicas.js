@@ -25,15 +25,15 @@ class Practicas{
   }
   
 
-  anadirMetrica(numeroCommit, explicacion, pruebas, cobertura, tipo, cantidadLineas) {
+  anadirMetrica(numeroCommit, explicacion, pruebas, cobertura, cantidadLineas, tipo) {
     // Validar que el número de commit sea exactamente uno más que el último
     if (numeroCommit === this.lastCommitNumber + 1) {
-        this.ModuloMetricas.anadirMetricaCommit(numeroCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo);
+        this.ModuloMetricas.anadirMetricaCommit(numeroCommit, explicacion, pruebas, cobertura, cantidadLineas, tipo);
         this.lastCommitNumber = numeroCommit; // Actualizar el último número de commit
         return true;
     }
     return false; 
-  }
+}
 
   motrarMetricas(){
     return this.ModuloMetricas.desplegarMetrica();
@@ -94,9 +94,10 @@ class Practicas{
             numeroCommit: metrica.numeroCommit,
             pruebas: metrica.pruebas,
             cobertura: metrica.cobertura,
-            puntaje: metrica.puntaje,
             explicacion: metrica.explicacion,
-            tipo: metrica.tipo
+            cantidadLineas: metrica.cantidadLineas,
+            tipo: metrica.tipo,
+            puntaje: metrica.puntaje
         }))
     };
   }

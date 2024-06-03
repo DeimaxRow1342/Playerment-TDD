@@ -43,12 +43,12 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
     expect(practica.motrarMetricas()).toEqual([
         {
             numeroCommit: 1,
-            puntaje: 0,
+            puntaje: 8,
             explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
             pruebas: null,
             cobertura: null, 
             cantidadLineas: null, 
-            tipo: null,
+            tipo: "convencional",
         },
     ]);
   });
@@ -56,10 +56,10 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
   it("Debe poder añadir una métrica a una práctica y verificar que se añadió correctamente", () => {
     const practica = new Practicas();
     practica.cargarDatos("Calculadora", "Prueba unitaria para suma", "2024-05-01", "https://github.com/example/Calculadora");
-    practica.anadirMetrica(1, "Primer commit", 0, 0, "convencional", 20);
+    practica.anadirMetrica(1, "Primer commit", 0, 20, 20, "convencional");
     const metricas = practica.motrarMetricas();
     expect(metricas.length).toEqual(1);
-    expect(metricas[0]).toEqual({ numeroCommit: 1, puntaje: 24, explicacion: "Primer commit", pruebas: 0, cobertura: 0, tipo: "convencional", cantidadLineas: 20 });
+    expect(metricas[0]).toEqual({ numeroCommit: 1, explicacion: "Primer commit", pruebas: 0, cobertura: 20, cantidadLineas: 20, tipo: "convencional", puntaje: 32 });
   });
 
   it("No debe añadir una métrica si el número de commit es inválido", () => {
@@ -83,12 +83,12 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
   it("Se debe poder eliminar un commit correctamente", () => {
     const practica = new Practicas();
     practica.cargarDatos("FizzBuzz");
-    practica.anadirMetrica(1, "Primer commit", 0, 0, "convencional", 20);
-    practica.anadirMetrica(2, "Segundo commit", 0, 0, "convencional", 20);
+    practica.anadirMetrica(1, "Primer commit", 0, 20, 20, "convencional");
+    practica.anadirMetrica(2, "Segundo commit", 0, 30, 30, "convencional");
     practica.eliminarMetrica(1);
     const metricas = practica.motrarMetricas();
     expect(metricas.length).toEqual(1);
-    expect(metricas[0]).toEqual({ numeroCommit: 2, puntaje: 24, explicacion: "Segundo commit", pruebas: 0, cobertura: 0, tipo: "convencional", cantidadLineas: 20 });
+    expect(metricas[0]).toEqual({ numeroCommit: 2, explicacion: "Segundo commit", pruebas: 0, cobertura: 30, cantidadLineas: 30, tipo: "convencional", puntaje: 32 });
   });
   //PRUEBAS FINALES DEL PROGRAMA FUNCIONAL
   it("Debe retornar falso si se intenta añadir un commit no secuencial", () => {
@@ -270,7 +270,7 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
     const ranking = practicas.generarRanking();
     
     expect(ranking).toEqual([
-        { nombre: "Ejercicio1", puntaje: 48 } 
+        { nombre: "Ejercicio1", puntaje: 16 } 
     ]);
 });
 test('debería mostrar la posición relativa en el ranking', () => {
@@ -290,14 +290,13 @@ test('debería mostrar la posición relativa en el ranking', () => {
 test('debería proporcionar un panel detallado de puntuación', () => {
   const practicas = new Practicas();
   practicas.cargarDatos("Ejercicio1", "Descripción1", "2024-01-01", "http://link1.com");
-  practicas.anadirMetrica(1, "Commit1", 10, 80, "convencional");
-
+  practicas.anadirMetrica(1, "Commit1", 10, 25, 25, "convencional");
   const panel = practicas.detallePuntuacion();
 
   expect(panel).toEqual({
       nombre: "Ejercicio1",
       metricas: [
-          { numeroCommit: 1, pruebas: 10, cobertura: 80, puntaje: 24, explicacion: "Commit1", tipo: "convencional" }
+          { numeroCommit: 1, pruebas: 10, cobertura: 25, cantidadLineas: 25, explicacion: "Commit1", tipo: "convencional", puntaje: 24}
       ]
   });
 });
