@@ -247,7 +247,7 @@ describe("Crear un programa gamificado para TDDLab", () => {
     practica.anadirMetrica(2, "Explicación 2", [], 90, "tipo2");
 
     const recomendacion = practica.obtenerRecomendacion();
-    expect(recomendacion).toEqual("el numero de pruebas agregadas esta siendo agregada de buena manera, buen trabajo!");
+    expect(recomendacion).toEqual("el numero de pruebas agregadas fue agregada de buena manera, buen trabajo!");
   });
 
 });
