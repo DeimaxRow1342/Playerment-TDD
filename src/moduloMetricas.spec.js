@@ -1,52 +1,59 @@
 import ModuloMetricas from "./moduloMetricas.js";
 
-describe("Crear un programa gamificado para TDDLab", () => {
+describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
     it("Se logra añadir un commit dentro un array de metricas", () => {
         let numCommit = 1;
         let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
         let metricArray = new ModuloMetricas();
         expect(metricArray.desplegarMetrica()).toEqual([]);
     });
+    
     it("Si la metrica ya existe esta se debe modificar", () => {
-        let numCommit = 1;
-        let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
-        let pruebas = 0;
-        let cobertura = 0;
-        let tipo = 'convencional';
-        let metricArray = new ModuloMetricas();
-        metricArray.anadirMetricaCommit(numCommit, explicacion, pruebas, cobertura, tipo);
-        let explicacionNueva = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error";
-        metricArray.anadirMetricaCommit(numCommit, explicacionNueva, pruebas, cobertura, tipo);
-        let arrayDeMetrica = {
+      let numCommit = 1;
+      let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
+      let pruebas = 0;
+      let cantidadLineas = 10;
+      let cobertura = 0;
+      let tipo = 'convencional';
+      let metricArray = new ModuloMetricas();
+      metricArray.anadirMetricaCommit(numCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo);
+      let explicacionNueva = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error";
+      metricArray.anadirMetricaCommit(numCommit, explicacionNueva, pruebas, cantidadLineas, cobertura, tipo);
+      let arrayDeMetrica = {
           numeroCommit: 1,
-          puntaje: 8,
-          explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error",
           pruebas: 0,
+          cantidadLineas: 10,
           cobertura: 0,
+          puntaje: 16,
+          explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error",
           tipo: 'convencional'
-        }
-        expect(metricArray.buscarMetricaPorCommit(numCommit)).toEqual(arrayDeMetrica);
+      }
+      expect(metricArray.buscarMetricaPorCommit(numCommit)).toEqual(arrayDeMetrica);
     });
+
     it("deberia actualizar la metrica", () => {
-        let numCommit = 1;
-        let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
-        let pruebas = 0;
-        let cobertura = 0;
-        let tipo = 'convencional';
-        let metricArray = new ModuloMetricas();
-        metricArray.anadirMetricaCommit(numCommit, explicacion, pruebas, cobertura, tipo);
-        let explicacionNueva = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error";
-        metricArray.actualizarMetricaExistente(metricArray.buscarMetricaPorCommit(numCommit), explicacionNueva, tipo);
-        let arrayDeMetrica = {
+      let numCommit = 1;
+      let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
+      let pruebas = 0;
+      let cantidadLineas = 10;
+      let cobertura = 0;
+      let tipo = 'convencional';
+      let metricArray = new ModuloMetricas();
+      metricArray.anadirMetricaCommit(numCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo);
+      let explicacionNueva = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error";
+      metricArray.actualizarMetricaExistente(metricArray.buscarMetricaPorCommit(numCommit), explicacionNueva, pruebas, cantidadLineas, cobertura, tipo);
+      let arrayDeMetrica = {
           numeroCommit: 1,
-          puntaje: 8,
-          explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error",
           pruebas: 0,
+          cantidadLineas: 10,
           cobertura: 0,
+          puntaje: 16,
+          explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error",
           tipo: 'convencional'
-        }
-        expect(metricArray.buscarMetricaPorCommit(numCommit)).toEqual(arrayDeMetrica);
+      }
+      expect(metricArray.buscarMetricaPorCommit(numCommit)).toEqual(arrayDeMetrica);
     });
+
     it("Se logra eliminar un commit en el array de metricas", () => {
         let numCommit = 1;
         let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
@@ -70,110 +77,92 @@ describe("Crear un programa gamificado para TDDLab", () => {
         expect(moduloMetricas.desplegarMetrica()).toEqual([]);
       });
 
-    it("Se logra mostrar un commit en el array de metricas", () => {
-        let numCommit = 1;
-        let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
-        let pruebas = 0;
-        let cobertura = 0;
-        let metricArray = new ModuloMetricas();
-        metricArray.anadirMetricaCommit(numCommit, explicacion, pruebas, cobertura);
-    
-        let arrayDeMetrica = {
-          numeroCommit: 1,
-          puntaje: 8,
-          explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
-          pruebas: 0,
-          cobertura: 0,
-          tipo: 'convencional'
-        }
-        expect(metricArray.buscarMetricaPorCommit(numCommit)).toEqual(arrayDeMetrica);
-    });
+    //
+    it("Se logra eliminar un commit en el array de metricas", () => {
+      let numCommit = 1;
+      let explicacion = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
+      let pruebas = 0;
+      let cantidadLineas = 10;
+      let cobertura = 0;
+      let tipo = 'convencional';
+      let metricArray = new ModuloMetricas();
+      metricArray.anadirMetricaCommit(numCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo);
+      metricArray.eliminarMetricaCommit(numCommit);
+      expect(metricArray.desplegarMetrica()).toEqual([]);
+  });
     
     it("Se logra mostrar dos commits en un array de metricas", () => {
-        let numCommit1 = 1;
-        let explicacion1 = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
-        let pruebas1 = 0;
-        let cobertura1 = 0;
-        
-        let numCommit2 = 2;
-        let explicacion2 = "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz";
-        let pruebas2 = 0;
-        let cobertura2 = 0;
-    
-        let metricArray = new ModuloMetricas();
-        metricArray.anadirMetricaCommit(numCommit1,explicacion1,pruebas1,cobertura1);
-        metricArray.anadirMetricaCommit(numCommit2,explicacion2,pruebas2,cobertura2);
-    
-        let arrayDeMetrica = [{
-          numeroCommit: 1,
-          puntaje: 8,
-          explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
-          pruebas: 0,
-          cobertura: 0,
-          tipo: 'convencional'
-        },
-        {
-          numeroCommit: 2,
-          puntaje: 8,
-          explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz",
-          pruebas: 0,
-          cobertura: 0,
-          tipo: 'convencional'
-        }]
-        expect(metricArray.desplegarMetrica()).toEqual(arrayDeMetrica);
+      let metricArray = new ModuloMetricas();
+      metricArray.anadirMetricaCommit(1, "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla", 0, 0, 0, 'convencional');
+      metricArray.anadirMetricaCommit(2, "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz", 0, 0, 0, 'convencional');
+      expect(metricArray.desplegarMetrica()).toEqual([
+          {
+              numeroCommit: 1,
+              pruebas: 0,
+              cantidadLineas: 0,
+              cobertura: 0,
+              puntaje: 8,
+              explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
+              tipo: 'convencional'
+          },
+          {
+              numeroCommit: 2,
+              pruebas: 0,
+              cantidadLineas: 0,
+              cobertura: 0,
+              puntaje: 8,
+              explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz",
+              tipo: 'convencional'
+          }
+      ]);
     });
     
     it("Se logra mostrar mas de dos commits en un array de metricas", () => {
-        let numCommit1 = 1;
-        let explicacion1 = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
-        let pruebas1 = 0;
-        let cobertura1 = 0;
-        
-        let numCommit2 = 2;
-        let explicacion2 = "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz";
-        let pruebas2 = 0;
-        let cobertura2 = 0;
-    
-        let numCommit3 = 3;
-        let explicacion3 = "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3";
-        let pruebas3 = 0;
-        let cobertura3 = 0;
-    
-        let metricArray = new ModuloMetricas();
-        metricArray.anadirMetricaCommit(numCommit1,explicacion1,pruebas1,cobertura1);
-        metricArray.anadirMetricaCommit(numCommit2,explicacion2,pruebas2,cobertura2);
-        metricArray.anadirMetricaCommit(numCommit3,explicacion3,pruebas3,cobertura3);
-    
-        let arrayDeMetrica = [{
-          numeroCommit: 1,
-          puntaje: 8,
-          explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
-          pruebas: 0,
-          cobertura: 0,
-          tipo: 'convencional'
-        },
-        {
-          numeroCommit: 2,
-          puntaje: 8,
-          explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz",
-          pruebas: 0,
-          cobertura: 0,
-          tipo: 'convencional'
-        },
-        {
-          numeroCommit: 3,
-          puntaje: 8,
-          explicacion: "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3",
-          pruebas: 0,
-          cobertura: 0,
-          tipo: 'convencional'
-        }]
-        expect(metricArray.desplegarMetrica()).toEqual(arrayDeMetrica);
+      let metricArray = new ModuloMetricas();
+      metricArray.anadirMetricaCommit(1, "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla", 0, 0, 0, 'convencional');
+      metricArray.anadirMetricaCommit(2, "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz", 0, 0, 0, 'convencional');
+      metricArray.anadirMetricaCommit(3, "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3", 0, 0, 0, 'convencional');
+      expect(metricArray.desplegarMetrica()).toEqual([
+          {
+              numeroCommit: 1,
+              pruebas: 0,
+              cantidadLineas: 0,
+              cobertura: 0,
+              puntaje: 8,
+              explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
+              tipo: 'convencional'
+          },
+          {
+              numeroCommit: 2,
+              pruebas: 0,
+              cantidadLineas: 0,
+              cobertura: 0,
+              puntaje: 8,
+              explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz",
+              tipo: 'convencional'
+          },
+          {
+              numeroCommit: 3,
+              pruebas: 0,
+              cantidadLineas: 0,
+              cobertura: 0,
+              puntaje: 8,
+              explicacion: "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3",
+              tipo: 'convencional'
+          }
+      ]);
     });
-
+ 
     it("Se deberia poder calcular el puntaje desde modulo metricas", () =>{
-        const modMetricas = new ModuloMetricas();
-        modMetricas.anadirMetricaCommit(1, "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3", 5, 92);
-        expect(modMetricas.calcularPuntaje(1)).toEqual(20); 
-    })    
+      const modMetricas = new ModuloMetricas();
+      const numCommit = 1;
+      const explicacion = "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3";
+      const pruebas = 5;
+      const cantidadLineas = 92;
+      const cobertura = 10;
+      const tipo = 'convencional';
+
+      modMetricas.anadirMetricaCommit(numCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo);
+      expect(modMetricas.calcularPuntaje(numCommit)).toEqual(8); 
+    });  
 });

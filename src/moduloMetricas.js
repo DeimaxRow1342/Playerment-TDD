@@ -5,12 +5,12 @@ class ModuloMetricas {
         this.arregloMetrica = [];
     }
 
-    anadirMetricaCommit(numeroCommit, explicacion, pruebas, cobertura, tipo) {
+    anadirMetricaCommit(numeroCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo) {
         const metricaExistente = this.buscarMetricaPorCommit(numeroCommit);
         if (metricaExistente) {
-            this.actualizarMetricaExistente(metricaExistente, explicacion, tipo);
+            this.actualizarMetricaExistente(metricaExistente, explicacion, pruebas, cantidadLineas, cobertura, tipo);
         } else {
-            this.agregarNuevaMetrica(numeroCommit, explicacion, pruebas, cobertura, tipo);
+            this.agregarNuevaMetrica(numeroCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo);
         }
     }
 
@@ -18,14 +18,17 @@ class ModuloMetricas {
         return this.arregloMetrica.find(metrica => metrica.numeroCommit === numeroCommit);
     }
 
-    actualizarMetricaExistente(metrica, explicacion, tipo) {
+    actualizarMetricaExistente(metrica, explicacion, pruebas, cantidadLineas, cobertura, tipo) {
         metrica.explicacion = explicacion;
+        metrica.pruebas = pruebas;
+        metrica.cantidadLineas = cantidadLineas;
+        metrica.cobertura = cobertura;
         metrica.tipo = tipo;
     }
 
-    agregarNuevaMetrica(numeroCommit, explicacion, pruebas, cobertura, tipo) {
+    agregarNuevaMetrica(numeroCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo) {
         const nuevaMetrica = new Metrica(numeroCommit, explicacion, tipo);
-        nuevaMetrica.cargarMetricas(pruebas, cobertura);
+        nuevaMetrica.cargarMetricas(pruebas, cantidadLineas, cobertura);
         this.arregloMetrica.push(nuevaMetrica);
     }
 
@@ -37,6 +40,7 @@ class ModuloMetricas {
         return {
             numeroCommit: metrica.getNumeroCommit(),
             pruebas: metrica.pruebas,
+            cantidadLineas: metrica.cantidadLineas,
             cobertura: metrica.cobertura,
             puntaje: metrica.getPuntaje(),
             explicacion: metrica.getExplicacion(),

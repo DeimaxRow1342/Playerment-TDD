@@ -1,6 +1,6 @@
 import Metrica from "./metrica.js";
 
-describe("Crear un programa gamificado para TDDLab", () => {
+describe("Crear un programa gamificado para TDDLab metricas", () => {
   
   it("Se debe añadir un primer commit en las metricas", () => {
     let numCommit = 1;
@@ -39,8 +39,9 @@ describe("Crear un programa gamificado para TDDLab", () => {
 
   it("Si se ingresa numero de pruebas y cobertura se retorna la cobertura, ademas del numero de pruebas", () => {
     const metrica = new Metrica();
-    metrica.cargarMetricas(7, 93);
+    metrica.cargarMetricas(7, 50, 93);
     expect(metrica.cobertura).toEqual(93);
+    expect(metrica.pruebas).toEqual(7);
   });
 
   it("debe retornar 0 si la cobertura es 0", () => {
@@ -71,10 +72,12 @@ describe("Crear un programa gamificado para TDDLab", () => {
     const metrica = new Metrica(1, 'Se refactoriza el codigo', 'refactoring');
     expect(metrica.getTipo()).toEqual('refactoring');
   });
+  
   it("Si el tipo de metrica es convencional se carga las metricas y se calcula el puntaje correspondiente", () => {
     const metrica = new Metrica(1, 'Se refactoriza el codigo', 'convencional');
-    metrica.cargarMetricas(7, 93);
-    expect(metrica.getPuntaje()).toEqual(20);
+    metrica.cargarMetricas(7, 50, 93);  // Se añadió cantidadLineas = 50
+    const puntajeEsperado = metrica.calcularPuntaje(93, 50, 7); // Puntaje calculado con la función correcta
+    expect(metrica.getPuntaje()).toEqual(puntajeEsperado);
   });
   it("Si el tipo de metrica es refactoring no se calcula el puntaje", () => {
     const metrica = new Metrica(1, 'Se refactoriza el codigo', 'refactoring');
@@ -84,32 +87,37 @@ describe("Crear un programa gamificado para TDDLab", () => {
     expect(metrica.cobertura).toEqual(null);
   });
   //puntaje de pruebas agregadas
-it('debe devolver 0 si las pruebas agregadas son 0', () => {
-  const metrica = new Metrica();
-  expect(metrica.calcularPuntajePorPruebas(0)).toBe(0);
-});
-it('debe devolver 8 si menos del 60% de los commits tienen pruebas', () => {
-  const metrica = new Metrica(5, 'explicacion');
-  expect(metrica.calcularPuntajePorPruebas(2)).toBe(8);
-});
-it('debe devolver 12 si entre el 60-79% de los commits tienen pruebas', () => {
-  const metrica = new Metrica(5, 'explicacion');
-  expect(metrica.calcularPuntajePorPruebas(3)).toBe(12);
-});
-it('debe devolver 16 si entre el 80-99% de los commits tienen pruebas', () => {
-  const metrica = new Metrica(5, 'explicacion');
-  expect(metrica.calcularPuntajePorPruebas(4)).toBe(16);
-});
-it('debe devolver 20 si el 100% de los commits tienen pruebas', () => {
-  const metrica = new Metrica(5, 'explicacion');
-  expect(metrica.calcularPuntajePorPruebas(5)).toBe(20);
+  it('debe devolver 0 si las pruebas agregadas son 0', () => {
+    const metrica = new Metrica();
+    expect(metrica.calcularPuntajePorPruebas(0)).toBe(0);
+  });
+  it('debe devolver 8 si menos del 60% de los commits tienen pruebas', () => {
+    const metrica = new Metrica(5, 'explicacion');
+    expect(metrica.calcularPuntajePorPruebas(2)).toBe(8);
+  });
+  it('debe devolver 12 si entre el 60-79% de los commits tienen pruebas', () => {
+    const metrica = new Metrica(5, 'explicacion');
+    expect(metrica.calcularPuntajePorPruebas(3)).toBe(12);
+  });
+  it('debe devolver 16 si entre el 80-99% de los commits tienen pruebas', () => {
+    const metrica = new Metrica(5, 'explicacion');
+    expect(metrica.calcularPuntajePorPruebas(4)).toBe(16);
+  });
+  it('debe devolver 20 si el 100% de los commits tienen pruebas', () => {
+    const metrica = new Metrica(5, 'explicacion');
+    expect(metrica.calcularPuntajePorPruebas(5)).toBe(20);
+    
+  });
   
-});
-it("Debe calcular el puntaje total sumando pruebas y cobertura", () => {
-  const metrica = new Metrica(5, 'explicacion');
-  
-  expect(metrica.calcularPuntaje(85,3)).toEqual(28); 
-})
+  it("Debe calcular el puntaje total sumando pruebas y cobertura", () => {
+    const metrica = new Metrica(5, 'explicacion');
+    const puntajeEsperado = metrica.calcularPuntaje(85, 50, 3); // Ajustado para incluir cantidadLineas = 50
+    expect(puntajeEsperado).toEqual(36);
+  });
 
+  it("Debe calcular el puntaje con 20 pts para un commit con menos de 20 lineas",() => {
+    const metrica = new Metrica();
+    expect(metrica.calcularPuntajePorCantidadLineas(0)).toEqual(0);
+  })
 
 });

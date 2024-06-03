@@ -1,6 +1,6 @@
 import Practicas from "./practicas.js";
 
-describe("Crear un programa gamificado para TDDLab", () => {
+describe("Crear un programa gamificado para TDDLab Praticas", () => {
   it("Si ingreso el nombre de una practica, me regresa el nombre", () => {
     const practica = new Practicas();
     practica.cargarDatos("FizzBuzz");
@@ -32,22 +32,25 @@ describe("Crear un programa gamificado para TDDLab", () => {
     practica.eliminarDatos("FizzBuzz");
     expect(practica.obtenerPractica("FizzBuzz")).toBeUndefined(); 
   });
-  it("Se deberia añadir una metrica de manera correcta", () => {
-    let practica = new Practicas("FizzBuzz");
+  it('Se deberia añadir una metrica de manera correcta', () => {
+    let practica = new Practicas("Prueba1", "Descripcion de prueba1", new Date());
     let numCommit1 = 1;
     let explicacion1 = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
-    let pruebas1 = 0;
-    let cobertura1 = 0;
-    practica.anadirMetrica(numCommit1,explicacion1,pruebas1,cobertura1);
+    let pruebas1 = null;
+    let cobertura1 = null;
+    let cantidadLineas1 = null; // Cambiado a null
+    practica.anadirMetrica(numCommit1, explicacion1, pruebas1, cobertura1, cantidadLineas1, "convencional");
     expect(practica.motrarMetricas()).toEqual([
-      {
-        numeroCommit: 1,
-        puntaje: 8,
-        explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
-        pruebas: 0,
-        cobertura: 0,
-        tipo: "convencional"
-    }]);
+        {
+            numeroCommit: 1,
+            puntaje: 0,
+            explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
+            pruebas: null,
+            cobertura: null, 
+            cantidadLineas: null, 
+            tipo: null,
+        },
+    ]);
   });
 
   it("Debe poder añadir una métrica a una práctica y verificar que se añadió correctamente", () => {

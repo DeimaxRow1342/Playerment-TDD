@@ -5,6 +5,7 @@ class Metrica {
         this.explicacion = explicacion;
         this.pruebas = null;
         this.cobertura = null;
+        this.cantidadLineas = null;
         this.tipo = tipo;
     }
     getNumeroCommit() {
@@ -19,25 +20,36 @@ class Metrica {
     getTipo() {
         return this.tipo;
     }
-    cargarMetricas(pruebas, cobertura){
+    
+    cargarMetricas(pruebas, cantidadLineas, cobertura){
         if(this.tipo == 'convencional'){
             this.pruebas = pruebas;
             this.cobertura = cobertura;
-            this.puntaje = this.calcularPuntaje(cobertura, pruebas);
+            this.cantidadLineas = cantidadLineas;
+            this.puntaje = this.calcularPuntaje(cobertura, cantidadLineas, pruebas);
         } else {
             this.pruebas = null;
             this.cobertura = null;
+            this.cantidadLineas = null;
             this.puntaje = 0;
         }
     }
-    calcularPuntaje(cobertura, pruebas){
+    calcularPuntaje(cobertura, cantidadLineas, pruebas){
         const puntajePruebas = this.calcularPuntajePorPruebas(pruebas);
         const puntajeCobertura = this.calcularPuntajePorCobertura(cobertura);
-        return puntajePruebas + puntajeCobertura;
+        const puntajeCantidadDeLineas = this.calcularPuntajePorCantidadLineas(cantidadLineas);
+        return puntajePruebas + puntajeCobertura + puntajeCantidadDeLineas;
        
     }
+
+    calcularPuntajePorCantidadLineas(cantidadLineas){
+        if(cantidadLineas < 60 && cantidadLineas > 0){
+            return 8;
+        }
+        return 0;
+    }
+
     calcularPuntajePorPruebas(pruebas) {
-        
             const porcentajeConPruebas = (pruebas / this.numeroCommit) * 100;
             if (porcentajeConPruebas < 60) {
                 return 8;
