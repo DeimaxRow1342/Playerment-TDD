@@ -65,11 +65,16 @@ class Practicas{
   }
   obtenerRecomendacion() {
     const metricas = this.motrarMetricas();
-    let recomendaciones = [];
+    const numeroCommits = metricas.length;
 
-    if (metricas.length === 0) {
+    if (numeroCommits === 0) {
       return "no existen commits";
     }
+
+    if (numeroCommits > 0 && numeroCommits === this.contarPruebas()) {
+      return "el numero de pruebas agregadas fue agregada de buena manera, buen trabajo!";
+    }
+
   }
   
 }
