@@ -140,6 +140,7 @@ function actualizarTablaPracticas() {
     </tr>
   `).join('');
 }
+//ranking
 function mostrarRanking() {
   const rankingContainer = document.getElementById("rankingContainer");
   rankingContainer.innerHTML = ''; // Limpiar contenido previo
@@ -157,6 +158,7 @@ function mostrarRanking() {
         <th>Posición</th>
         <th>Nombre</th>
         <th>Puntaje</th>
+        <th>Detalle</th>
       </tr>
     </thead>
     <tbody>
@@ -165,6 +167,7 @@ function mostrarRanking() {
           <td>${index + 1}</td>
           <td>${item.nombre}</td>
           <td>${item.puntaje}</td>
+          <td><button onclick="mostrarDetalle('${item.nombre}')">Ver Detalle</button></td>
         </tr>
       `).join('')}
     </tbody>
@@ -175,6 +178,46 @@ function mostrarRanking() {
 function generarRankingGeneral() {
   return practicas.map(practica => practica.generarRanking()[0])
                   .sort((a, b) => b.puntaje - a.puntaje);
+}
+
+function mostrarDetalle(nombre) {
+  const practica = practicas.find(practica => practica.nombre === nombre);
+  if (practica) {
+    const detalle = practica.detallePuntuacion();
+    const detalleContainer = document.createElement("div");
+    detalleContainer.innerHTML = `
+      <h3>Detalle de ${detalle.nombre}</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Commits</th>
+            <th>Pruebas</th>
+            <th>Cobertura</th>
+            <th>Puntaje</th>
+            <th>Explicación</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${detalle.metricas.map(metrica => `
+            <tr>
+              <td>${metrica.numeroCommit}</td>
+              <td>${metrica.pruebas}</td>
+              <td>${metrica.cobertura}</td>
+              <td>${metrica.puntaje}</td>
+              <td>${metrica.explicacion}</td>
+              <td>${metrica.tipo}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+    const rankingContainer = document.getElementById("rankingContainer");
+    rankingContainer.appendChild(detalleContainer);
+  } else {
+    alert("No se encontró la práctica.");
+  }
+
 }
 function ingresarAMetricaDePractica(nombrePractica) {
   const practicaSeleccionada = practicas.find(practica => practica.nombre === nombrePractica);
@@ -339,3 +382,4 @@ function ingresarAMetricaDePractica(nombrePractica) {
 window.eliminarPractica = eliminarPractica;
 window.desplegarFormularioEditar = desplegarFormularioEditar;
 window.ingresarAMetricaDePractica = ingresarAMetricaDePractica;
+window.mostrarDetalle = mostrarDetalle;
