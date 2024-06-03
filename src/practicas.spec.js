@@ -245,7 +245,6 @@ describe("Crear un programa gamificado para TDDLab", () => {
     practica.pruebas = ['prueba1', 'prueba2']; // Agregar pruebas
     practica.anadirMetrica(1, "Explicación 1", [], 90, "tipo1");
     practica.anadirMetrica(2, "Explicación 2", [], 90, "tipo2");
-
     const recomendacion = practica.obtenerRecomendacion();
     expect(recomendacion).toEqual("el numero de pruebas agregadas fue agregada de buena manera, buen trabajo!");
   });
@@ -254,10 +253,23 @@ describe("Crear un programa gamificado para TDDLab", () => {
     practica.pruebas = ['prueba1', 'prueba2', 'prueba3']; // Agregar pruebas
     practica.anadirMetrica(1, "Explicación 1", [], 90, "tipo1");
     practica.anadirMetrica(2, "Explicación 2", [], 90, "tipo2");
-  
+
     const recomendacion = practica.obtenerRecomendacion();
     expect(recomendacion).toEqual("el numero de pruebas agregadas fue implementada de muy mala forma, ten cuidado!");
   });
+  //ranking
+  test('debería generar un ranking basado en el desempeño de los ejercicios', () => {
+    const practicas = new Practicas();
+    practicas.cargarDatos("Ejercicio1", "Descripción1", "2024-01-01", "http://link1.com");
+    practicas.anadirMetrica(1, "Commit1", 10, 80, "convencional");
+    practicas.anadirMetrica(2, "Commit2", 20, 90, "convencional");
+
+    const ranking = practicas.generarRanking();
+    
+    expect(ranking).toEqual([
+        { nombre: "Ejercicio1", puntaje: 32 } // Puntaje = 20 (pruebas) + 20 (cobertura)
+    ]);
+});
 
 });
 

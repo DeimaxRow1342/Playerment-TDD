@@ -66,7 +66,6 @@ class Practicas{
   obtenerRecomendacion() {
     const metricas = this.motrarMetricas();
     const numeroCommits = metricas.length;
-
     if (numeroCommits === 0) {
       return "no existen commits";
     }
@@ -78,7 +77,11 @@ class Practicas{
     }
 
   }
-  
+  generarRanking() {
+    const metricas = this.motrarMetricas();
+    const puntajeTotal = metricas.reduce((total, metrica) => total + (metrica.puntaje || 0), 0);
+    return [{ nombre: this.nombre, puntaje: puntajeTotal }];
+  }
 }
 
 export default Practicas;
