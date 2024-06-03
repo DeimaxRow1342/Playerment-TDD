@@ -59,7 +59,7 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
     practica.anadirMetrica(1, "Primer commit", 0, 0, "convencional", 20);
     const metricas = practica.motrarMetricas();
     expect(metricas.length).toEqual(1);
-    expect(metricas[0]).toEqual({ numeroCommit: 1, puntaje: 16, explicacion: "Primer commit", pruebas: 0, cobertura: 0, tipo: "convencional", cantidadLineas: 20 });
+    expect(metricas[0]).toEqual({ numeroCommit: 1, puntaje: 24, explicacion: "Primer commit", pruebas: 0, cobertura: 0, tipo: "convencional", cantidadLineas: 20 });
   });
 
   it("No debe añadir una métrica si el número de commit es inválido", () => {
@@ -88,7 +88,7 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
     practica.eliminarMetrica(1);
     const metricas = practica.motrarMetricas();
     expect(metricas.length).toEqual(1);
-    expect(metricas[0]).toEqual({ numeroCommit: 2, puntaje: 16, explicacion: "Segundo commit", pruebas: 0, cobertura: 0, tipo: "convencional", cantidadLineas: 20 });
+    expect(metricas[0]).toEqual({ numeroCommit: 2, puntaje: 24, explicacion: "Segundo commit", pruebas: 0, cobertura: 0, tipo: "convencional", cantidadLineas: 20 });
   });
   //PRUEBAS FINALES DEL PROGRAMA FUNCIONAL
   it("Debe retornar falso si se intenta añadir un commit no secuencial", () => {
