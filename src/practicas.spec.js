@@ -267,9 +267,11 @@ describe("Crear un programa gamificado para TDDLab", () => {
     const ranking = practicas.generarRanking();
     
     expect(ranking).toEqual([
-        { nombre: "Ejercicio1", puntaje: 32 } // Puntaje = 20 (pruebas) + 20 (cobertura)
+        { nombre: "Ejercicio1", puntaje: 32 } 
     ]);
 });
+
+
 
 });
 

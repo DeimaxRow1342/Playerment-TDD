@@ -37,6 +37,7 @@ function cargarPracticasIniciales() {
     nuevaPractica.cargarDatos(nombres[i], descripciones[i], fechas[i], enlaces[i]);
     practicas.push(nuevaPractica);
   }
+  
 
   actualizarTablaPracticas();
 }
@@ -114,6 +115,7 @@ function buscarPracticaPorNombre() {
   } else {
     alert('No se encontró la práctica.');
   }
+  
   
 } //Esta es la funcion de buscar en el buscador
 

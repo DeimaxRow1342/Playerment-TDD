@@ -82,6 +82,7 @@ class Practicas{
     const puntajeTotal = metricas.reduce((total, metrica) => total + (metrica.puntaje || 0), 0);
     return [{ nombre: this.nombre, puntaje: puntajeTotal }];
   }
+  
 }
 
 export default Practicas;
