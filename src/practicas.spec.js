@@ -284,6 +284,20 @@ test('debería mostrar la posición relativa en el ranking', () => {
 
   expect(posicion).toBe(1); // Ejercicio1 debería estar primero
 });
+test('debería proporcionar un panel detallado de puntuación', () => {
+  const practicas = new Practicas();
+  practicas.cargarDatos("Ejercicio1", "Descripción1", "2024-01-01", "http://link1.com");
+  practicas.anadirMetrica(1, "Commit1", 10, 80, "convencional");
+
+  const panel = practicas.detallePuntuacion();
+
+  expect(panel).toEqual({
+      nombre: "Ejercicio1",
+      metricas: [
+          { numeroCommit: 1, pruebas: 10, cobertura: 80, puntaje: 16, explicacion: "Commit1", tipo: "convencional" }
+      ]
+  });
+});
 
 
 

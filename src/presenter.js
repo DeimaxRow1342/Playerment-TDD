@@ -288,6 +288,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
     formMetrica.appendChild(btnConfirmMetrica);
     proyectoContainer.appendChild(formMetrica);
   }
+
 }
 
 window.eliminarPractica = eliminarPractica;

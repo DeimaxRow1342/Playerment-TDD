@@ -86,7 +86,20 @@ class Practicas{
     const ranking = this.generarRanking();
     return ranking.findIndex((item) => item.nombre === this.nombre) + 1;
   }
-  
+  detallePuntuacion() {
+    const metricas = this.motrarMetricas();
+    return {
+        nombre: this.nombre,
+        metricas: metricas.map(metrica => ({
+            numeroCommit: metrica.numeroCommit,
+            pruebas: metrica.pruebas,
+            cobertura: metrica.cobertura,
+            puntaje: metrica.puntaje,
+            explicacion: metrica.explicacion,
+            tipo: metrica.tipo
+        }))
+    };
+  }
 }
 
 export default Practicas;
