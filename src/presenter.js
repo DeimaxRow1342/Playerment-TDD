@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("proyectoForm").addEventListener("submit", function(event) {
     event.preventDefault();
     agregarNuevaPractica();
+
   });
+  document.getElementById("showRankingButton").addEventListener("click", mostrarRanking);
+  
 });
 
 function agregarNuevaPractica() {
@@ -137,7 +140,42 @@ function actualizarTablaPracticas() {
     </tr>
   `).join('');
 }
+function mostrarRanking() {
+  const rankingContainer = document.getElementById("rankingContainer");
+  rankingContainer.innerHTML = ''; // Limpiar contenido previo
 
+  const rankingList = generarRankingGeneral();
+  if (rankingList.length === 0) {
+    rankingContainer.innerHTML = "<p>No hay prácticas para mostrar en el ranking.</p>";
+    return;
+  }
+
+  const tablaRanking = document.createElement("table");
+  tablaRanking.innerHTML = `
+    <thead>
+      <tr>
+        <th>Posición</th>
+        <th>Nombre</th>
+        <th>Puntaje</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${rankingList.map((item, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${item.nombre}</td>
+          <td>${item.puntaje}</td>
+        </tr>
+      `).join('')}
+    </tbody>
+  `;
+  rankingContainer.appendChild(tablaRanking);
+}
+
+function generarRankingGeneral() {
+  return practicas.map(practica => practica.generarRanking()[0])
+                  .sort((a, b) => b.puntaje - a.puntaje);
+}
 function ingresarAMetricaDePractica(nombrePractica) {
   const practicaSeleccionada = practicas.find(practica => practica.nombre === nombrePractica);
   const proyectoContainer = document.querySelector('#proyectoContainer');
@@ -154,6 +192,8 @@ function ingresarAMetricaDePractica(nombrePractica) {
   tablaEncabezados.style.display = 'none';
 
   if (practicaSeleccionada) {
+    
+    
     const tituloPracticaElement = document.createElement('h2');
     //tituloPracticaElement.textContent = Práctica: ${nombrePractica};
     tituloPracticaElement.textContent = `Práctica: ${nombrePractica}`;
@@ -169,6 +209,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
       tablaPracticas.style.display = 'table'; 
       formularioPractica.style.display = 'block';
     });
+    
     proyectoContainer.appendChild(btnVolver);
 
     const listaMetricasConvencional = document.createElement('ul');
@@ -245,6 +286,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
       }
       
     });
+    
 
     const btnConfirmMetrica = document.createElement('button');
     btnConfirmMetrica.textContent = 'Agregar Métrica';
@@ -270,7 +312,9 @@ function ingresarAMetricaDePractica(nombrePractica) {
       } else {
         alert('Please enter valid values.');
       }
+      
     });
+    
     //boton para ver recomendaciones
     const btnVerRecomendaciones = document.createElement('button');
     btnVerRecomendaciones.textContent = 'Ver recomendaciones del proyecto';
@@ -288,6 +332,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
     formMetrica.appendChild(btnConfirmMetrica);
     proyectoContainer.appendChild(formMetrica);
   }
+  
 
 }
 
