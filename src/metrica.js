@@ -97,7 +97,12 @@ class Metrica {
             return 12;
         } else if(complejidad === "Deficiente"){
             return 8;
+
         }
+    }
+
+    calcularPuntajePorFrecuencia(frecuencia){
+        return 0;
     }
 
     contarDias(fechaInicio, fechaFin) {
