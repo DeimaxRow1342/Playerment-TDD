@@ -104,6 +104,8 @@ class Metrica {
     calcularPuntajePorFrecuencia(frecuencia){
         if(frecuencia <= 2){
             return 20;
+        } else if(frecuencia == 3){
+            return 16;
         }
         return 0;
     }
