@@ -88,7 +88,9 @@ class Metrica {
     calcularPuntajePorComplejidad(complejidad){
         if(complejidad === "Excelente"){
             return 20;
-        }
+        } else if (complejidad === "Bueno"){
+            return 16;
+        } 
     }
 }
 export default Metrica;
