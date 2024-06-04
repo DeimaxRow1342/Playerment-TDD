@@ -166,4 +166,9 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
     expect(metrica.calcularPuntajePorComplejidad("Deficiente")).toEqual(8);
   });
 
+  it("Debe contar 2 dias entre la fecha 19/04/2024 y 21/04/2024", () => {
+    const metrica = new Metrica();
+    expect(metrica.contarDias("19/04/2024", "21/04/2024")).toEqual(2);
+  });
+
 });

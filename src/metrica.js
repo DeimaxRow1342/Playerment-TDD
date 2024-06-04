@@ -99,5 +99,18 @@ class Metrica {
             return 8;
         }
     }
+
+    contarDias(fechaInicio, fechaFin) {
+        const partesInicio = fechaInicio.split('/');
+        const partesFin = fechaFin.split('/');
+        const fechaInicioObj = new Date(partesInicio[2], partesInicio[1] - 1, partesInicio[0]); 
+        const fechaFinObj = new Date(partesFin[2], partesFin[1] - 1, partesFin[0]);
+    
+        const diferencia = fechaFinObj.getTime() - fechaInicioObj.getTime();
+    
+        const dias = Math.ceil(diferencia / (1000 * 3600 * 24));
+    
+        return dias;
+    }
 }
 export default Metrica;
