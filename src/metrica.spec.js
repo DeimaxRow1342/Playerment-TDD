@@ -146,5 +146,9 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
   });
 
   //Calculo de Porcentaje en base a la complejidad
-  
+  it("Debe devolver 20 pts para un commit con complejidad Excelente", () => {
+    const metrica = new Metrica();
+    expect(metrica.calcularPuntajePorComplejidad("Excelente")).toEqual(20);
+  });
+
 });
