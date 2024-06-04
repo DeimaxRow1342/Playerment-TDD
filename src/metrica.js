@@ -106,6 +106,8 @@ class Metrica {
             return 20;
         } else if(frecuencia == 3){
             return 16;
+        } else if(frecuencia <= 7){ //Commits poco regulares o frecuentes
+            return 12;
         }
         return 0;
     }
