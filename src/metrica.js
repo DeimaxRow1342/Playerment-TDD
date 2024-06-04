@@ -92,6 +92,8 @@ class Metrica {
             return 16;
         } else if(complejidad === "Regular"){
             return 12;
+        } else if(complejidad === "Deficiente"){
+            return 8;
         }
     }
 }
