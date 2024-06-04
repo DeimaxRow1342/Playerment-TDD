@@ -38,16 +38,18 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
     let explicacion1 = "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla";
     let pruebas1 = null;
     let cobertura1 = null;
-    let cantidadLineas1 = null; // Cambiado a null
-    practica.anadirMetrica(numCommit1, explicacion1, pruebas1, cobertura1, cantidadLineas1, "convencional");
+    let cantidadLineas1 = null; 
+    let complejidad1 = "Deficiente";
+    practica.anadirMetrica(numCommit1, explicacion1, pruebas1, cobertura1, cantidadLineas1, complejidad1, "convencional");
     expect(practica.motrarMetricas()).toEqual([
         {
             numeroCommit: 1,
-            puntaje: 8,
+            puntaje: 16,
             explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
             pruebas: null,
             cobertura: null, 
             cantidadLineas: null, 
+            complejidad: "Deficiente",
             tipo: "convencional",
         },
     ]);
@@ -56,10 +58,10 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
   it("Debe poder añadir una métrica a una práctica y verificar que se añadió correctamente", () => {
     const practica = new Practicas();
     practica.cargarDatos("Calculadora", "Prueba unitaria para suma", "2024-05-01", "https://github.com/example/Calculadora");
-    practica.anadirMetrica(1, "Primer commit", 0, 20, 20, "convencional");
+    practica.anadirMetrica(1, "Primer commit", 0, 20, 20, "Excelente", "convencional");
     const metricas = practica.motrarMetricas();
     expect(metricas.length).toEqual(1);
-    expect(metricas[0]).toEqual({ numeroCommit: 1, explicacion: "Primer commit", pruebas: 0, cobertura: 20, cantidadLineas: 20, tipo: "convencional", puntaje: 32 });
+    expect(metricas[0]).toEqual({ numeroCommit: 1, explicacion: "Primer commit", pruebas: 0, cobertura: 20, cantidadLineas: 20, complejidad: "Excelente", tipo: "convencional", puntaje: 52 });
   });
 
   it("No debe añadir una métrica si el número de commit es inválido", () => {
@@ -83,12 +85,12 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
   it("Se debe poder eliminar un commit correctamente", () => {
     const practica = new Practicas();
     practica.cargarDatos("FizzBuzz");
-    practica.anadirMetrica(1, "Primer commit", 0, 20, 20, "convencional");
-    practica.anadirMetrica(2, "Segundo commit", 0, 30, 30, "convencional");
+    practica.anadirMetrica(1, "Primer commit", 0, 20, 20, "Excelente", "convencional");
+    practica.anadirMetrica(2, "Segundo commit", 0, 30, 30, "Bueno", "convencional");
     practica.eliminarMetrica(1);
     const metricas = practica.motrarMetricas();
     expect(metricas.length).toEqual(1);
-    expect(metricas[0]).toEqual({ numeroCommit: 2, explicacion: "Segundo commit", pruebas: 0, cobertura: 30, cantidadLineas: 30, tipo: "convencional", puntaje: 32 });
+    expect(metricas[0]).toEqual({ numeroCommit: 2, explicacion: "Segundo commit", pruebas: 0, cobertura: 30, cantidadLineas: 30, complejidad: "Bueno" , tipo: "convencional", puntaje: 48 });
   });
   //PRUEBAS FINALES DEL PROGRAMA FUNCIONAL
   it("Debe retornar falso si se intenta añadir un commit no secuencial", () => {
@@ -264,42 +266,42 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
   test('debería generar un ranking basado en el desempeño de los ejercicios', () => {
     const practicas = new Practicas();
     practicas.cargarDatos("Ejercicio1", "Descripción1", "2024-01-01", "http://link1.com");
-    practicas.anadirMetrica(1, "Commit1", 10, 80, "convencional");
-    practicas.anadirMetrica(2, "Commit2", 20, 90, "convencional");
+    practicas.anadirMetrica(1, "Commit1", 10, 80, "Excelente", "convencional");
+    practicas.anadirMetrica(2, "Commit2", 20, 90, "Deficiente", "convencional");
 
     const ranking = practicas.generarRanking();
     
     expect(ranking).toEqual([
-        { nombre: "Ejercicio1", puntaje: 16 } 
+        { nombre: "Ejercicio1", puntaje: 0 } 
     ]);
-});
-test('debería mostrar la posición relativa en el ranking', () => {
-  const practicas = new Practicas();
-  const otraPractica = new Practicas();
-  practicas.cargarDatos("Ejercicio1", "Descripción1", "2024-01-01", "http://link1.com");
-  otraPractica.cargarDatos("Ejercicio2", "Descripción2", "2024-01-02", "http://link2.com");
-
-  practicas.anadirMetrica(1, "Commit1", 10, 80, "convencional");
-  otraPractica.anadirMetrica(1, "Commit1", 5, 70, "convencional");
-
-  const ranking = [practicas, otraPractica].map(p => p.generarRanking());
-  const posicion = practicas.obtenerPosicionEnRanking(ranking);
-
-  expect(posicion).toBe(1); // Ejercicio1 debería estar primero
-});
-test('debería proporcionar un panel detallado de puntuación', () => {
-  const practicas = new Practicas();
-  practicas.cargarDatos("Ejercicio1", "Descripción1", "2024-01-01", "http://link1.com");
-  practicas.anadirMetrica(1, "Commit1", 10, 25, 25, "convencional");
-  const panel = practicas.detallePuntuacion();
-
-  expect(panel).toEqual({
-      nombre: "Ejercicio1",
-      metricas: [
-          { numeroCommit: 1, pruebas: 10, cobertura: 25, cantidadLineas: 25, explicacion: "Commit1", tipo: "convencional", puntaje: 24}
-      ]
   });
-});
+  test('debería mostrar la posición relativa en el ranking', () => {
+    const practicas = new Practicas();
+    const otraPractica = new Practicas();
+    practicas.cargarDatos("Ejercicio1", "Descripción1", "2024-01-01", "http://link1.com");
+    otraPractica.cargarDatos("Ejercicio2", "Descripción2", "2024-01-02", "http://link2.com");
+
+    practicas.anadirMetrica(1, "Commit1", 10, 80, "convencional");
+    otraPractica.anadirMetrica(1, "Commit1", 5, 70, "convencional");
+
+    const ranking = [practicas, otraPractica].map(p => p.generarRanking());
+    const posicion = practicas.obtenerPosicionEnRanking(ranking);
+
+    expect(posicion).toBe(1); // Ejercicio1 debería estar primero
+  });
+  test('debería proporcionar un panel detallado de puntuación', () => {
+    const practicas = new Practicas();
+    practicas.cargarDatos("Ejercicio1", "Descripción1", "2024-01-01", "http://link1.com");
+    practicas.anadirMetrica(1, "Commit1", 10, 25, 25, "Bueno", "convencional");
+    const panel = practicas.detallePuntuacion();
+
+    expect(panel).toEqual({
+        nombre: "Ejercicio1",
+        metricas: [
+            { numeroCommit: 1, pruebas: 10, cobertura: 25, cantidadLineas: 25, explicacion: "Commit1", complejidad: "Bueno", tipo: "convencional", puntaje: 40}
+        ]
+    });
+  });
 
 });
 

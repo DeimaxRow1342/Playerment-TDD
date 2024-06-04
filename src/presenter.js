@@ -194,6 +194,7 @@ function mostrarDetalle(nombre) {
             <th>Pruebas</th>
             <th>Cobertura</th>
             <th>Cantidad de Lineas</th>
+            <th>Complejidad</th>
             <th>Puntaje</th>
             <th>Explicación</th>
             <th>Tipo</th>
@@ -206,6 +207,7 @@ function mostrarDetalle(nombre) {
               <td>${metrica.pruebas}</td>
               <td>${metrica.cobertura}</td>
               <td>${metrica.cantidadLineas}</td>
+              <td>${metrica.complejidad}</td>
               <td>${metrica.puntaje}</td>
               <td>${metrica.explicacion}</td>
               <td>${metrica.tipo}</td>
@@ -261,6 +263,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
         <p style="margin-left: 20px;">Número de pruebas: ${metrica.pruebas || 'N/A'}</p>
         <p style="margin-left: 20px;">Porcentaje de cobertura: ${metrica.cobertura || 'N/A'}</p>
         <p style="margin-left: 20px;">Cantidad de Líneas: ${metrica.cantidadLineas || 'N/A'}</p>
+        <p style="margin-left: 20px;">Complejidad: ${metrica.complejidad || 'N/A'}</p>
         <p style="margin-left: 20px;">Explicación: ${metrica.explicacion}</p>
         <p style="margin-left: 20px;">Puntaje: ${metrica.puntaje}</p>
       `;
@@ -282,30 +285,42 @@ function ingresarAMetricaDePractica(nombrePractica) {
     });
 
     const formMetrica = document.createElement('form');
+
     const inputNumeroCommit = document.createElement('input');
     inputNumeroCommit.type = 'number';
     inputNumeroCommit.placeholder = 'Número de commit';
+
     const inputPrueba = document.createElement('input');
     inputPrueba.type = 'number';
     inputPrueba.placeholder = 'Prueba';
+
     const inputCobertura = document.createElement('input');
     inputCobertura.type = 'number';
     inputCobertura.placeholder = 'Cobertura';
+
     const inputCantidadLineas = document.createElement('input'); // Nueva línea para cantidad de líneas de código
     inputCantidadLineas.type = 'number'; // Tipo número para asegurar que se ingresen solo números
     inputCantidadLineas.placeholder = 'Cantidad de líneas de código'; // Placeholder para guiar al usuario
+
+    const inputComplejidad = document.createElement('input'); 
+    inputComplejidad.type = 'text'; 
+    inputComplejidad.placeholder = 'Complejidad(Excelente, Bueno, Regular, Deficiente)';
+
     const inputExplicacion = document.createElement('input');
     inputExplicacion.type = 'text';
     inputExplicacion.placeholder = 'Explicación';
 
     const selectTipo = document.createElement('select'); 
     selectTipo.style.width = '100%';
+
     const optionConvencional = document.createElement('option');
     optionConvencional.value = 'convencional';
     optionConvencional.textContent = 'Convencional';
+    
     const optionRefactorizacion = document.createElement('option');
     optionRefactorizacion.value = 'refactoring';
     optionRefactorizacion.textContent = 'Refactorización';
+
     selectTipo.appendChild(optionConvencional);
     selectTipo.appendChild(optionRefactorizacion);
 
@@ -314,10 +329,12 @@ function ingresarAMetricaDePractica(nombrePractica) {
         inputPrueba.style.display = 'none';
         inputCobertura.style.display = 'none';
         inputCantidadLineas.style.display = 'none'; // Ocultar el campo de cantidad de líneas para refactorización
+        inputComplejidad.style.display = 'none';
       } else {
         inputPrueba.style.display = 'block';
         inputCobertura.style.display = 'block';
         inputCantidadLineas.style.display = 'block'; // Mostrar el campo de cantidad de líneas para convencional
+        inputComplejidad.style.display = 'block';
       }
       
     });
@@ -335,10 +352,11 @@ function ingresarAMetricaDePractica(nombrePractica) {
       const prueba = parseInt(inputPrueba.value);
       const cobertura = parseInt(inputCobertura.value);
       const cantidadLineas = parseInt(inputCantidadLineas.value);
+      const complejidad = inputComplejidad.value;
       const tipo = selectTipo.value;
 
       if (!isNaN(numeroCommit) && explicacion) {
-        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, cantidadLineas, tipo);
+        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, cantidadLineas, complejidad, tipo);
         if (result) {
           alert('Commit added successfully.');
         } else {
@@ -364,6 +382,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
     formMetrica.appendChild(inputPrueba);
     formMetrica.appendChild(inputCobertura);
     formMetrica.appendChild(inputCantidadLineas); // Agregar el input de cantidad de líneas
+    formMetrica.appendChild(inputComplejidad);
     formMetrica.appendChild(inputExplicacion);
     formMetrica.appendChild(selectTipo); 
     formMetrica.appendChild(btnConfirmMetrica);

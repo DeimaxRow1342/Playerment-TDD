@@ -5,12 +5,12 @@ class ModuloMetricas {
         this.arregloMetrica = [];
     }
 
-    anadirMetricaCommit(numeroCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo) {
+    anadirMetricaCommit(numeroCommit, explicacion, pruebas, cobertura, cantidadLineas, complejidad, tipo) {
         const metricaExistente = this.buscarMetricaPorCommit(numeroCommit);
         if (metricaExistente) {
-            this.actualizarMetricaExistente(metricaExistente, explicacion, pruebas, cantidadLineas, cobertura, tipo);
+            this.actualizarMetricaExistente(metricaExistente, explicacion, pruebas, cobertura, cantidadLineas, complejidad, tipo);
         } else {
-            this.agregarNuevaMetrica(numeroCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo);
+            this.agregarNuevaMetrica(numeroCommit, explicacion, pruebas, cobertura, cantidadLineas, complejidad,tipo);
         }
     }
 
@@ -18,17 +18,18 @@ class ModuloMetricas {
         return this.arregloMetrica.find(metrica => metrica.numeroCommit === numeroCommit);
     }
 
-    actualizarMetricaExistente(metrica, explicacion, pruebas, cantidadLineas, cobertura, tipo) {
+    actualizarMetricaExistente(metrica, explicacion, pruebas, cobertura, cantidadLineas, complejidad, tipo) {
         metrica.explicacion = explicacion;
         metrica.pruebas = pruebas;
-        metrica.cantidadLineas = cantidadLineas;
         metrica.cobertura = cobertura;
+        metrica.cantidadLineas = cantidadLineas;
+        metrica.complejidad = complejidad;
         metrica.tipo = tipo;
     }
 
-    agregarNuevaMetrica(numeroCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo) {
+    agregarNuevaMetrica(numeroCommit, explicacion, pruebas, cobertura, cantidadLineas, complejidad, tipo) {
         const nuevaMetrica = new Metrica(numeroCommit, explicacion, tipo);
-        nuevaMetrica.cargarMetricas(pruebas, cantidadLineas, cobertura);
+        nuevaMetrica.cargarMetricas(pruebas, cobertura, cantidadLineas, complejidad);
         this.arregloMetrica.push(nuevaMetrica);
     }
 
@@ -42,6 +43,7 @@ class ModuloMetricas {
             pruebas: metrica.pruebas,
             cantidadLineas: metrica.cantidadLineas,
             cobertura: metrica.cobertura,
+            complejidad: metrica.complejidad,
             puntaje: metrica.getPuntaje(),
             explicacion: metrica.getExplicacion(),
             tipo: metrica.getTipo()

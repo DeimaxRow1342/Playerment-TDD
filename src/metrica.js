@@ -6,6 +6,7 @@ class Metrica {
         this.pruebas = null;
         this.cobertura = null;
         this.cantidadLineas = null;
+        this.complejidad = null;
         this.tipo = tipo;
     }
     getNumeroCommit() {
@@ -21,25 +22,27 @@ class Metrica {
         return this.tipo;
     }
     
-    cargarMetricas(pruebas, cantidadLineas, cobertura){
+    cargarMetricas(pruebas, cantidadLineas, cobertura, complejidad){
         if(this.tipo == 'convencional'){
             this.pruebas = pruebas;
             this.cobertura = cobertura;
             this.cantidadLineas = cantidadLineas;
-            this.puntaje = this.calcularPuntaje(cobertura, cantidadLineas, pruebas);
+            this.complejidad = complejidad;
+            this.puntaje = this.calcularPuntaje(cobertura, cantidadLineas, pruebas, complejidad);
         } else {
             this.pruebas = null;
             this.cobertura = null;
             this.cantidadLineas = null;
+            this.complejidad = null;
             this.puntaje = 0;
         }
     }
-    calcularPuntaje(cobertura, cantidadLineas, pruebas){
+    calcularPuntaje(cobertura, cantidadLineas, pruebas, complejidad){
         const puntajePruebas = this.calcularPuntajePorPruebas(pruebas);
         const puntajeCobertura = this.calcularPuntajePorCobertura(cobertura);
         const puntajeCantidadDeLineas = this.calcularPuntajePorCantidadLineas(cantidadLineas);
-        return puntajePruebas + puntajeCobertura + puntajeCantidadDeLineas;
-       
+        const puntajeComplejidad = this.calcularPuntajePorComplejidad(complejidad);
+        return puntajePruebas + puntajeCobertura + puntajeCantidadDeLineas + puntajeComplejidad;
     }
 
     calcularPuntajePorCantidadLineas(cantidadLineas) {
@@ -51,7 +54,7 @@ class Metrica {
             return 16;
         } else if (cantidadLineas > 40 && cantidadLineas <= 60) {
             return 12;
-        } else {
+        } else if (cantidadLineas > 60){
             return 8;
         }
     }
