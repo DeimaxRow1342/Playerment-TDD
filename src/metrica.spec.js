@@ -190,4 +190,9 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
     const metrica = new Metrica();
     expect(metrica.calcularPuntajePorFrecuencia(5)).toEqual(12);
   })
+
+  it("Debe retornar 8 puntos al tener una frecuencia muy irregular, como un commit por semana", () => {
+    const metrica = new Metrica();
+    expect(metrica.calcularPuntajePorFrecuencia(12)).toEqual(8);
+  })
 });
