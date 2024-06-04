@@ -362,11 +362,12 @@ function ingresarAMetricaDePractica(nombrePractica) {
       const cobertura = parseInt(inputCobertura.value);
       const cantidadLineas = parseInt(inputCantidadLineas.value);
       const complejidad = inputComplejidad.value;
+      const frecuencia = inputFrecuencia.value;
       const tipo = selectTipo.value;
 
-      const metrica = new Metrica();
-      const frecuencia = metrica.contarDias(practicaSeleccionada.ModuloMetricas.arregloMetrica[numeroCommit],frecuencia, inputFrecuencia.value);
-
+      /*const metrica = new Metrica();
+      const frecuencia = metrica.contarDias(practicaSeleccionada.ModuloMetricas.arregloMetrica[numeroCommit].frecuencia, inputFrecuencia.value);
+*/
       if (!isNaN(numeroCommit) && explicacion) {
         const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, cantidadLineas, complejidad, tipo, frecuencia);
         if (result) {

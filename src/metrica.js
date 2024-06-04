@@ -10,15 +10,19 @@ class Metrica {
         this.frecuencia = null;
         this.tipo = tipo;
     }
+
     getNumeroCommit() {
         return this.numeroCommit;
     }
+
     getPuntaje() {
         return this.puntaje;
     }
+
     getExplicacion() {
         return this.explicacion;
     }
+
     getTipo() {
         return this.tipo;
     }
@@ -40,6 +44,7 @@ class Metrica {
             this.puntaje = 0;
         }
     }
+
     calcularPuntaje(cobertura, cantidadLineas, pruebas, complejidad, frecuencia){
         const puntajePruebas = this.calcularPuntajePorPruebas(pruebas);
         const puntajeCobertura = this.calcularPuntajePorCobertura(cobertura);
@@ -50,9 +55,7 @@ class Metrica {
     }
 
     calcularPuntajePorCantidadLineas(cantidadLineas) {
-        if (cantidadLineas <= 0) {
-            return 0;
-        } else if (cantidadLineas < 20) {
+        if (cantidadLineas < 20) {
             return 20;
         } else if (cantidadLineas >= 20 && cantidadLineas <= 40) {
             return 16;
@@ -61,6 +64,7 @@ class Metrica {
         } else if (cantidadLineas > 60){
             return 8;
         }
+        return 0;
     }
 
     calcularPuntajePorPruebas(pruebas) {
@@ -101,8 +105,8 @@ class Metrica {
             return 12;
         } else if(complejidad === "Deficiente"){
             return 8;
-
         }
+        return 0;
     }
 
     calcularPuntajePorFrecuencia(frecuencia){
