@@ -144,4 +144,7 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
     const metrica = new Metrica();
     expect(metrica.calcularPuntajePorCantidadLineas(-10)).toEqual(0);
   });
+
+  //Calculo de Porcentaje en base a la complejidad
+  
 });

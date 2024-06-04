@@ -237,15 +237,10 @@ function ingresarAMetricaDePractica(nombrePractica) {
   tablaEncabezados.style.display = 'none';
 
   if (practicaSeleccionada) {
-    
-    
     const tituloPracticaElement = document.createElement('h2');
-    //tituloPracticaElement.textContent = Práctica: ${nombrePractica};
     tituloPracticaElement.textContent = `Práctica: ${nombrePractica}`;
-
     proyectoContainer.appendChild(tituloPracticaElement);
     
-
     const btnVolver = document.createElement('button');
     btnVolver.textContent = 'Volver a la lista de prácticas';
     btnVolver.addEventListener('click', function() {
@@ -254,9 +249,38 @@ function ingresarAMetricaDePractica(nombrePractica) {
       tablaPracticas.style.display = 'table'; 
       formularioPractica.style.display = 'block';
     });
-    
     proyectoContainer.appendChild(btnVolver);
+    
+    const metricasPractica = practicaSeleccionada.motrarMetricas();
+    metricasPractica.forEach(metrica => {
+      const metricaContainer = document.createElement('div');
+      metricaContainer.style.marginBottom = '15px';
 
+      const metricaContent = `
+        <p><strong>Commit ${metrica.numeroCommit}:</strong></p>
+        <p style="margin-left: 20px;">Número de pruebas: ${metrica.pruebas || 'N/A'}</p>
+        <p style="margin-left: 20px;">Porcentaje de cobertura: ${metrica.cobertura || 'N/A'}</p>
+        <p style="margin-left: 20px;">Cantidad de Líneas: ${metrica.cantidadLineas || 'N/A'}</p>
+        <p style="margin-left: 20px;">Explicación: ${metrica.explicacion}</p>
+        <p style="margin-left: 20px;">Puntaje: ${metrica.puntaje}</p>
+      `;
+
+      metricaContainer.innerHTML = metricaContent;
+
+      const btnEliminar = document.createElement('button');
+      btnEliminar.textContent = 'Eliminar';
+      btnEliminar.style.marginLeft = '20px';
+      btnEliminar.addEventListener('click', function() {
+        if (confirm("¿Estás seguro de eliminar este commit?")) {
+          practicaSeleccionada.eliminarMetrica(metrica.numeroCommit);
+          ingresarAMetricaDePractica(nombrePractica); 
+        }
+      });
+
+      metricaContainer.appendChild(btnEliminar);
+      proyectoContainer.appendChild(metricaContainer);
+    });
+    /*
     const listaMetricasConvencional = document.createElement('ul');
     const listaMetricasRefactorizacion = document.createElement('ul');
     const metricasPractica = practicaSeleccionada.motrarMetricas();
@@ -293,7 +317,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
 
     proyectoContainer.appendChild(contenedorMetricasConvencional);
     proyectoContainer.appendChild(contenedorMetricasRefactorizacion);
-    
+    */
     
 
     const formMetrica = document.createElement('form');

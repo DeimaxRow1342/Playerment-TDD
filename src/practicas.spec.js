@@ -301,7 +301,5 @@ test('debería proporcionar un panel detallado de puntuación', () => {
   });
 });
 
-
-
 });
 

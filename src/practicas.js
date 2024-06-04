@@ -33,7 +33,7 @@ class Practicas{
         return true;
     }
     return false; 
-}
+  }
 
   motrarMetricas(){
     return this.ModuloMetricas.desplegarMetrica();
