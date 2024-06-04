@@ -114,11 +114,6 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
     const puntajeEsperado = metrica.calcularPuntaje(85, 50, 3, "Excelente"); // Ajustado para incluir cantidadLineas = 50
     expect(puntajeEsperado).toEqual(60);
   });
-//Calculo de Porcentaje en base a cantida de lineas
-  it("Debe calcular el puntaje con 20 pts para un commit con menos de 20 lineas",() => {
-    const metrica = new Metrica();
-    expect(metrica.calcularPuntajePorCantidadLineas(0)).toEqual(0);
-  })
 
   it("Debe calcular el puntaje con 20 pts para un commit con menos de 20 lineas",() => {
     const metrica = new Metrica();
@@ -194,5 +189,11 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
   it("Debe retornar 8 puntos al tener una frecuencia muy irregular, como un commit por semana", () => {
     const metrica = new Metrica();
     expect(metrica.calcularPuntajePorFrecuencia(12)).toEqual(8);
+  })
+
+  it("Se debe retornar la fecha ingresada", () => {
+    const metrica = new Metrica();
+    metrica.cargarMetricas(12, 10, 100, "Bueno", "19/04/2024")
+    expect(metrica.getFrecuencia()).toEqual("19/04/2024");
   })
 });

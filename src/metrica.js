@@ -23,6 +23,10 @@ class Metrica {
         return this.explicacion;
     }
 
+    getFrecuencia(){
+        return this.frecuencia;
+    }
+
     getTipo() {
         return this.tipo;
     }
@@ -55,7 +59,7 @@ class Metrica {
     }
 
     calcularPuntajePorCantidadLineas(cantidadLineas) {
-        if (cantidadLineas < 20) {
+        if (cantidadLineas >=0 && cantidadLineas < 20) {
             return 20;
         } else if (cantidadLineas >= 20 && cantidadLineas <= 40) {
             return 16;

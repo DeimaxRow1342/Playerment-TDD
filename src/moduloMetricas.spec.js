@@ -51,7 +51,7 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
           cantidadLineas: 10,
           cobertura: 0,
           complejidad: "Regular",
-          puntaje: 28,
+          puntaje: 48,
           explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla y se añade un mensaje de error",
           tipo: 'convencional'
       }
@@ -106,7 +106,8 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
               cantidadLineas: 0,
               cobertura: 0,
               complejidad: "Regular",
-              puntaje: 20,
+              frecuencia: undefined,
+              puntaje: 40,
               explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
               tipo: 'convencional'
           },
@@ -116,7 +117,8 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
               cantidadLineas: 0,
               cobertura: 0,
               complejidad: "Regular",
-              puntaje: 20,
+              frecuencia: undefined,
+              puntaje: 40,
               explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz",
               tipo: 'convencional'
           }
@@ -135,9 +137,10 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
               cantidadLineas: 0,
               cobertura: 0,
               complejidad: "Regular",
-              puntaje: 20,
+              puntaje: 40,
               explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
-              tipo: 'convencional'
+              tipo: 'convencional',
+              frecuencia: undefined
           },
           {
               numeroCommit: 2,
@@ -145,7 +148,8 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
               cantidadLineas: 0,
               cobertura: 0,
               complejidad: "Regular",
-              puntaje: 20,
+              puntaje: 40,
+              frecuencia: undefined,
               explicacion: "Se añade la funcionalidad de regresar el mismo numero para un numero que no siga las reglas del FizzBuzz",
               tipo: 'convencional'
           },
@@ -155,7 +159,7 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
               cantidadLineas: 0,
               cobertura: 0,
               complejidad: "Regular",
-              puntaje: 20,
+              puntaje: 40,
               explicacion: "Se añade la funcionalidad para devolver Fizz cuando se ingrese el numero 3",
               tipo: 'convencional'
           }

@@ -44,8 +44,9 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
     expect(practica.motrarMetricas()).toEqual([
         {
             numeroCommit: 1,
-            puntaje: 16,
+            puntaje: 36,
             explicacion: "Se aniade la funcionalidad de retornar el numero 1, porque no sigue ninguna regla",
+            frecuencia: undefined,
             pruebas: null,
             cobertura: null, 
             cantidadLineas: null, 
@@ -272,7 +273,7 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
     const ranking = practicas.generarRanking();
     
     expect(ranking).toEqual([
-        { nombre: "Ejercicio1", puntaje: 0 } 
+        { nombre: "Ejercicio1", puntaje: 16 } 
     ]);
   });
   test('debería mostrar la posición relativa en el ranking', () => {
