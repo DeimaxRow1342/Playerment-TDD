@@ -90,7 +90,9 @@ class Metrica {
             return 20;
         } else if (complejidad === "Bueno"){
             return 16;
-        } 
+        } else if(complejidad === "Regular"){
+            return 12;
+        }
     }
 }
 export default Metrica;

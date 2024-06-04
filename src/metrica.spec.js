@@ -156,4 +156,8 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
     expect(metrica.calcularPuntajePorComplejidad("Bueno")).toEqual(16);
   });
 
+  it("Debe devolver 12 pts para un commit con complejidad de Regular", () => {
+    const metrica = new Metrica();
+    expect(metrica.calcularPuntajePorComplejidad("Regular")).toEqual(12);
+  });
 });
