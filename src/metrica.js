@@ -7,6 +7,7 @@ class Metrica {
         this.cobertura = null;
         this.cantidadLineas = null;
         this.complejidad = null;
+        this.frecuencia = null;
         this.tipo = tipo;
     }
     getNumeroCommit() {
@@ -22,27 +23,30 @@ class Metrica {
         return this.tipo;
     }
     
-    cargarMetricas(pruebas, cantidadLineas, cobertura, complejidad){
+    cargarMetricas(pruebas, cantidadLineas, cobertura, complejidad, frecuencia){
         if(this.tipo == 'convencional'){
             this.pruebas = pruebas;
             this.cobertura = cobertura;
             this.cantidadLineas = cantidadLineas;
             this.complejidad = complejidad;
-            this.puntaje = this.calcularPuntaje(cobertura, cantidadLineas, pruebas, complejidad);
+            this.frecuencia = frecuencia;
+            this.puntaje = this.calcularPuntaje(cobertura, cantidadLineas, pruebas, complejidad, frecuencia);
         } else {
             this.pruebas = null;
             this.cobertura = null;
             this.cantidadLineas = null;
             this.complejidad = null;
+            this.frecuencia = null;
             this.puntaje = 0;
         }
     }
-    calcularPuntaje(cobertura, cantidadLineas, pruebas, complejidad){
+    calcularPuntaje(cobertura, cantidadLineas, pruebas, complejidad, frecuencia){
         const puntajePruebas = this.calcularPuntajePorPruebas(pruebas);
         const puntajeCobertura = this.calcularPuntajePorCobertura(cobertura);
         const puntajeCantidadDeLineas = this.calcularPuntajePorCantidadLineas(cantidadLineas);
         const puntajeComplejidad = this.calcularPuntajePorComplejidad(complejidad);
-        return puntajePruebas + puntajeCobertura + puntajeCantidadDeLineas + puntajeComplejidad;
+        const puntajeFrecuencia = this.calcularPuntajePorFrecuencia(frecuencia);
+        return puntajePruebas + puntajeCobertura + puntajeCantidadDeLineas + puntajeComplejidad + puntajeFrecuencia;
     }
 
     calcularPuntajePorCantidadLineas(cantidadLineas) {

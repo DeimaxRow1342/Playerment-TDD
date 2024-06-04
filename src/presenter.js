@@ -193,6 +193,8 @@ function mostrarDetalle(nombre) {
             <th>Commits</th>
             <th>Pruebas</th>
             <th>Cobertura</th>
+            <th>Cantidad de Lineas</th>
+            <th>Complejidad</th>
             <th>Puntaje</th>
             <th>Explicación</th>
             <th>Tipo</th>
@@ -204,6 +206,8 @@ function mostrarDetalle(nombre) {
               <td>${metrica.numeroCommit}</td>
               <td>${metrica.pruebas}</td>
               <td>${metrica.cobertura}</td>
+              <td>${metrica.cantidadLineas}</td>
+              <td>${metrica.complejidad}</td>
               <td>${metrica.puntaje}</td>
               <td>${metrica.explicacion}</td>
               <td>${metrica.tipo}</td>
@@ -235,15 +239,10 @@ function ingresarAMetricaDePractica(nombrePractica) {
   tablaEncabezados.style.display = 'none';
 
   if (practicaSeleccionada) {
-    
-    
     const tituloPracticaElement = document.createElement('h2');
-    //tituloPracticaElement.textContent = Práctica: ${nombrePractica};
     tituloPracticaElement.textContent = `Práctica: ${nombrePractica}`;
-
     proyectoContainer.appendChild(tituloPracticaElement);
     
-
     const btnVolver = document.createElement('button');
     btnVolver.textContent = 'Volver a la lista de prácticas';
     btnVolver.addEventListener('click', function() {
@@ -252,33 +251,28 @@ function ingresarAMetricaDePractica(nombrePractica) {
       tablaPracticas.style.display = 'table'; 
       formularioPractica.style.display = 'block';
     });
-    
     proyectoContainer.appendChild(btnVolver);
 
-    const listaMetricasConvencional = document.createElement('ul');
-    const listaMetricasRefactorizacion = document.createElement('ul');
     const metricasPractica = practicaSeleccionada.motrarMetricas();
-
-    const contenedorMetricasConvencional = document.createElement('div');
-    contenedorMetricasConvencional.innerHTML = '<h3>Métricas Convencionales</h3>';
-    contenedorMetricasConvencional.appendChild(listaMetricasConvencional);
-    
-    const contenedorMetricasRefactorizacion = document.createElement('div');
-    contenedorMetricasRefactorizacion.innerHTML = '<h3>Métricas de Refactorización</h3>';
-    contenedorMetricasRefactorizacion.appendChild(listaMetricasRefactorizacion);
-
     metricasPractica.forEach(metrica => {
-      const metricaItem = document.createElement('li');
-      if (metrica.tipo === 'convencional') {
-        metricaItem.textContent = `Commit: ${metrica.numeroCommit}, Numero de pruebas: ${metrica.pruebas}, Porcentaje de cobertura: ${metrica.cobertura}, Puntaje: ${metrica.puntaje}, Explicación: ${metrica.explicacion}`;
-        listaMetricasConvencional.appendChild(metricaItem);
-      } else {
-        metricaItem.textContent = `Commit: ${metrica.numeroCommit}, Explicación: ${metrica.explicacion}`;
-        listaMetricasRefactorizacion.appendChild(metricaItem);
-      }
+      const metricaContainer = document.createElement('div');
+      metricaContainer.style.marginBottom = '15px';
+
+      const metricaContent = `
+        <p><strong>Commit ${metrica.numeroCommit}:</strong></p>
+        <p style="margin-left: 20px;">Número de pruebas: ${metrica.pruebas || 'N/A'}</p>
+        <p style="margin-left: 20px;">Porcentaje de cobertura: ${metrica.cobertura || 'N/A'}</p>
+        <p style="margin-left: 20px;">Cantidad de Líneas: ${metrica.cantidadLineas || 'N/A'}</p>
+        <p style="margin-left: 20px;">Complejidad: ${metrica.complejidad || 'N/A'}</p>
+        <p style="margin-left: 20px;">Explicación: ${metrica.explicacion}</p>
+        <p style="margin-left: 20px;">Puntaje: ${metrica.puntaje}</p>
+      `;
+
+      metricaContainer.innerHTML = metricaContent;
 
       const btnEliminar = document.createElement('button');
       btnEliminar.textContent = 'Eliminar';
+      btnEliminar.style.marginLeft = '20px';
       btnEliminar.addEventListener('click', function() {
         if (confirm("¿Estás seguro de eliminar este commit?")) {
           practicaSeleccionada.eliminarMetrica(metrica.numeroCommit);
@@ -286,36 +280,47 @@ function ingresarAMetricaDePractica(nombrePractica) {
         }
       });
 
-      metricaItem.appendChild(btnEliminar);
+      metricaContainer.appendChild(btnEliminar);
+      proyectoContainer.appendChild(metricaContainer);
     });
 
-    proyectoContainer.appendChild(contenedorMetricasConvencional);
-    proyectoContainer.appendChild(contenedorMetricasRefactorizacion);
-    
-    
-
     const formMetrica = document.createElement('form');
+
     const inputNumeroCommit = document.createElement('input');
     inputNumeroCommit.type = 'number';
     inputNumeroCommit.placeholder = 'Número de commit';
+
     const inputPrueba = document.createElement('input');
     inputPrueba.type = 'number';
     inputPrueba.placeholder = 'Prueba';
+
     const inputCobertura = document.createElement('input');
     inputCobertura.type = 'number';
     inputCobertura.placeholder = 'Cobertura';
+
+    const inputCantidadLineas = document.createElement('input'); // Nueva línea para cantidad de líneas de código
+    inputCantidadLineas.type = 'number'; // Tipo número para asegurar que se ingresen solo números
+    inputCantidadLineas.placeholder = 'Cantidad de líneas de código'; // Placeholder para guiar al usuario
+
+    const inputComplejidad = document.createElement('input'); 
+    inputComplejidad.type = 'text'; 
+    inputComplejidad.placeholder = 'Complejidad(Excelente, Bueno, Regular, Deficiente)';
+
     const inputExplicacion = document.createElement('input');
     inputExplicacion.type = 'text';
     inputExplicacion.placeholder = 'Explicación';
 
     const selectTipo = document.createElement('select'); 
     selectTipo.style.width = '100%';
+
     const optionConvencional = document.createElement('option');
     optionConvencional.value = 'convencional';
     optionConvencional.textContent = 'Convencional';
+    
     const optionRefactorizacion = document.createElement('option');
     optionRefactorizacion.value = 'refactoring';
     optionRefactorizacion.textContent = 'Refactorización';
+
     selectTipo.appendChild(optionConvencional);
     selectTipo.appendChild(optionRefactorizacion);
 
@@ -323,9 +328,13 @@ function ingresarAMetricaDePractica(nombrePractica) {
       if (selectTipo.value === 'refactoring') {
         inputPrueba.style.display = 'none';
         inputCobertura.style.display = 'none';
+        inputCantidadLineas.style.display = 'none'; // Ocultar el campo de cantidad de líneas para refactorización
+        inputComplejidad.style.display = 'none';
       } else {
         inputPrueba.style.display = 'block';
         inputCobertura.style.display = 'block';
+        inputCantidadLineas.style.display = 'block'; // Mostrar el campo de cantidad de líneas para convencional
+        inputComplejidad.style.display = 'block';
       }
       
     });
@@ -342,10 +351,12 @@ function ingresarAMetricaDePractica(nombrePractica) {
       const explicacion = inputExplicacion.value;
       const prueba = parseInt(inputPrueba.value);
       const cobertura = parseInt(inputCobertura.value);
+      const cantidadLineas = parseInt(inputCantidadLineas.value);
+      const complejidad = inputComplejidad.value;
       const tipo = selectTipo.value;
 
       if (!isNaN(numeroCommit) && explicacion) {
-        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, tipo);
+        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, cantidadLineas, complejidad, tipo);
         if (result) {
           alert('Commit added successfully.');
         } else {
@@ -370,6 +381,8 @@ function ingresarAMetricaDePractica(nombrePractica) {
     formMetrica.appendChild(inputNumeroCommit);
     formMetrica.appendChild(inputPrueba);
     formMetrica.appendChild(inputCobertura);
+    formMetrica.appendChild(inputCantidadLineas); // Agregar el input de cantidad de líneas
+    formMetrica.appendChild(inputComplejidad);
     formMetrica.appendChild(inputExplicacion);
     formMetrica.appendChild(selectTipo); 
     formMetrica.appendChild(btnConfirmMetrica);
