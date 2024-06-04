@@ -195,6 +195,7 @@ function mostrarDetalle(nombre) {
             <th>Cobertura</th>
             <th>Cantidad de Lineas</th>
             <th>Complejidad</th>
+            <th>Frecuencia</th>
             <th>Puntaje</th>
             <th>Explicación</th>
             <th>Tipo</th>
@@ -208,6 +209,7 @@ function mostrarDetalle(nombre) {
               <td>${metrica.cobertura}</td>
               <td>${metrica.cantidadLineas}</td>
               <td>${metrica.complejidad}</td>
+              <td>${metrica.frecuencia}</td>
               <td>${metrica.puntaje}</td>
               <td>${metrica.explicacion}</td>
               <td>${metrica.tipo}</td>
@@ -264,6 +266,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
         <p style="margin-left: 20px;">Porcentaje de cobertura: ${metrica.cobertura || 'N/A'}</p>
         <p style="margin-left: 20px;">Cantidad de Líneas: ${metrica.cantidadLineas || 'N/A'}</p>
         <p style="margin-left: 20px;">Complejidad: ${metrica.complejidad || 'N/A'}</p>
+        <p style="margin-left: 20px;">Frecuencia: ${metrica.frecuencia || 'N/A'}</p>
         <p style="margin-left: 20px;">Explicación: ${metrica.explicacion}</p>
         <p style="margin-left: 20px;">Puntaje: ${metrica.puntaje}</p>
       `;
@@ -306,6 +309,10 @@ function ingresarAMetricaDePractica(nombrePractica) {
     inputComplejidad.type = 'text'; 
     inputComplejidad.placeholder = 'Complejidad(Excelente, Bueno, Regular, Deficiente)';
 
+    const inputFrecuencia = document.createElement('input'); 
+    inputFrecuencia.type = 'text'; 
+    inputFrecuencia.placeholder = 'Frecuencia';
+
     const inputExplicacion = document.createElement('input');
     inputExplicacion.type = 'text';
     inputExplicacion.placeholder = 'Explicación';
@@ -330,11 +337,13 @@ function ingresarAMetricaDePractica(nombrePractica) {
         inputCobertura.style.display = 'none';
         inputCantidadLineas.style.display = 'none'; // Ocultar el campo de cantidad de líneas para refactorización
         inputComplejidad.style.display = 'none';
+        inputFrecuencia.style.display = 'none';
       } else {
         inputPrueba.style.display = 'block';
         inputCobertura.style.display = 'block';
         inputCantidadLineas.style.display = 'block'; // Mostrar el campo de cantidad de líneas para convencional
         inputComplejidad.style.display = 'block';
+        inputFrecuencia.style.display = 'block';
       }
       
     });
@@ -353,10 +362,11 @@ function ingresarAMetricaDePractica(nombrePractica) {
       const cobertura = parseInt(inputCobertura.value);
       const cantidadLineas = parseInt(inputCantidadLineas.value);
       const complejidad = inputComplejidad.value;
+      const frecuencia = inputFrecuencia.value;
       const tipo = selectTipo.value;
 
       if (!isNaN(numeroCommit) && explicacion) {
-        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, cantidadLineas, complejidad, tipo);
+        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, cantidadLineas, complejidad, tipo, frecuencia);
         if (result) {
           alert('Commit added successfully.');
         } else {
@@ -383,6 +393,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
     formMetrica.appendChild(inputCobertura);
     formMetrica.appendChild(inputCantidadLineas); // Agregar el input de cantidad de líneas
     formMetrica.appendChild(inputComplejidad);
+    formMetrica.appendChild(inputFrecuencia);
     formMetrica.appendChild(inputExplicacion);
     formMetrica.appendChild(selectTipo); 
     formMetrica.appendChild(btnConfirmMetrica);
