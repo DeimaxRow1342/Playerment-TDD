@@ -365,7 +365,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
       const tipo = selectTipo.value;
 
       const metrica = new Metrica();
-      const frecuencia = metrica.contarDias(practicaSeleccionada.ModuloMetricas.arregloMetrica[numeroCommit], inputFrecuencia.value);
+      const frecuencia = metrica.contarDias(practicaSeleccionada.ModuloMetricas.arregloMetrica[numeroCommit],frecuencia, inputFrecuencia.value);
 
       if (!isNaN(numeroCommit) && explicacion) {
         const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, cantidadLineas, complejidad, tipo, frecuencia);
