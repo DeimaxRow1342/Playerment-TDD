@@ -40,6 +40,11 @@ class ModuloMetricas {
         if (archivoTxt.length === 0) {
             return "Archivo Vacio";
         }
+        const lines = archivoTxt.split('\n');
+        for (let line of lines) {
+            const [numeroCommit, explicacion, pruebas, cobertura, cantidadLineas, complejidad, tipo, frecuencia] = line.split(',').map(item => item.trim());
+            this.anadirMetricaCommit(Number(numeroCommit), explicacion, Number(pruebas), Number(cobertura), Number(cantidadLineas), complejidad, tipo, Number(frecuencia));
+        }
         return "Archivo Leido";
     }
 

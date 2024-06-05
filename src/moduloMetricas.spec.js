@@ -182,10 +182,34 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
     it("El proyecto debería leer un archivo de texto vacio y devolver mensaje de Archivo Vacio", ()=>{
       const modMetricas = new ModuloMetricas();
       expect(modMetricas.ingresarMetricasDesdeArchivo('archivoMetricas_1.txt')).toEqual("Archivo Vacio");
-    })
+    });
 
     it("Se deberia leer un archivo de texto que no este vacio y devolver mensaje de Archivo Leido", ()=>{
       const modMetricas = new ModuloMetricas();
       expect(modMetricas.ingresarMetricasDesdeArchivo('archivoMetricas_2.txt')).toEqual("Archivo Leido");
-    })
+    });
+
+    it("El proyecto debería leer un archivo de texto con el formato especificado que contenga un commit, y mostrar el commit en el array", () => {
+      const modMetricas = new ModuloMetricas();
+      const filePath = 'archivoMetricas_3.txt';
+      const result = modMetricas.ingresarMetricasDesdeArchivo(filePath);
+  
+      const expectedArray = [
+          {
+              numeroCommit: 1,
+              explicacion: 'explicacion01',
+              pruebas: 100,
+              cantidadLineas: 98,
+              cobertura: 12,
+              complejidad: "Bueno",
+              tipo: 'convencional',
+              frecuencia: 2,
+              puntaje: 72,
+          }
+      ];
+  
+      expect(result).toEqual("Archivo Leido");
+      expect(modMetricas.desplegarMetrica()).toEqual(expectedArray);
+    });
+
 });
