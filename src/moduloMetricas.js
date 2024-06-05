@@ -40,6 +40,7 @@ class ModuloMetricas {
         if (archivoTxt.length === 0) {
             return "Archivo Vacio";
         }
+        return "Archivo Leido";
     }
 
     desplegarMetrica() {

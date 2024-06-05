@@ -183,4 +183,9 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
       const modMetricas = new ModuloMetricas();
       expect(modMetricas.ingresarMetricasDesdeArchivo('archivoMetricas_1.txt')).toEqual("Archivo Vacio");
     })
+
+    it("Se deberia leer un archivo de texto que no este vacio y devolver mensaje de Archivo Leido", ()=>{
+      const modMetricas = new ModuloMetricas();
+      expect(modMetricas.ingresarMetricasDesdeArchivo('archivoMetricas_2.txt')).toEqual("Archivo Leido");
+    })
 });
