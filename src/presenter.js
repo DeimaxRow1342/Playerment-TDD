@@ -356,6 +356,56 @@ function ingresarAMetricaDePractica(nombrePractica) {
       
     });
     
+    //-----------------------------------------------------------------------------------------
+    const btnAgregarMetricaDesdeArchivo = document.createElement('button');
+    btnAgregarMetricaDesdeArchivo.textContent = 'Agregar Métrica desde Archivo';
+
+    btnAgregarMetricaDesdeArchivo.addEventListener('click', function() {
+      //event.preventDefault();
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.txt'; // Acepta solo archivos de texto
+      input.addEventListener('change', function() {
+        const file = input.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const content = event.target.result;
+            const lineas = content.split('\n');
+            lineas.forEach(linea => {
+              const valores = linea.split(','); // Suponiendo que las métricas están separadas por comas
+              const numeroCommit = parseInt(valores[0]);
+              const explicacion = valores[1];
+              const pruebas = parseInt(valores[2]);
+              const cobertura = parseInt(valores[3]);
+              const cantidadLineas = parseInt(valores[4]);
+              const complejidad = valores[5];
+              const tipo = valores[6];
+              const frecuencia = parseInt(valores[7]);
+
+              if (!isNaN(numeroCommit) && explicacion && !isNaN(pruebas) && !isNaN(cobertura) && !isNaN(cantidadLineas) && !isNaN(frecuencia)) {
+                const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, pruebas, cobertura, cantidadLineas, complejidad, tipo, frecuencia);
+                if (result) {
+                  alert('Métricas agregadas exitosamente.');
+                } else {
+                  alert('Número de commit inválido. Los números de commit deben ser secuenciales y únicos.');
+                }
+                ingresarAMetricaDePractica(nombrePractica);  
+              } else {
+                alert('Por favor, ingresa valores válidos.');
+              }
+            });
+          };
+          reader.readAsText(file);
+        } else {
+          alert('No se seleccionó ningún archivo');
+        }
+      });
+      input.click(); // Abre el cuadro de diálogo para seleccionar un archivo
+    });
+
+    document.getElementById("proyectoForm").insertAdjacentElement('afterend', btnAgregarMetricaDesdeArchivo);
+    //-----------------------------------------------------------------------------------------
 
     const btnConfirmMetrica = document.createElement('button');
     btnConfirmMetrica.textContent = 'Agregar Métrica';
