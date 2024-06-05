@@ -299,7 +299,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
 
     const inputCantidadLineas = document.createElement('input'); // Nueva línea para cantidad de líneas de código
     inputCantidadLineas.type = 'number'; // Tipo número para asegurar que se ingresen solo números
-    inputCantidadLineas.placeholder = 'Cobertura'; // Placeholder para guiar al usuario
+    inputCantidadLineas.placeholder = 'Cobertura '; // Placeholder para guiar al usuario
 
     const inputCobertura = document.createElement('input');
     inputCobertura.type = 'number';

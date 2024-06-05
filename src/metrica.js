@@ -72,14 +72,13 @@ class Metrica {
     }
 
     calcularPuntajePorPruebas(pruebas) {
-            const porcentajeConPruebas = pruebas;
-            if (porcentajeConPruebas < 60) {
+            if (pruebas < 60) {
                 return 8;
-            } else if (porcentajeConPruebas >= 60 && porcentajeConPruebas < 80) {
+            } else if (pruebas >= 60 && pruebas < 80) {
                 return 12;
-            } else if (porcentajeConPruebas >= 80 && porcentajeConPruebas < 100) {
+            } else if (pruebas >= 80 && pruebas < 100) {
                 return 16;
-            }else if (porcentajeConPruebas === 100) {
+            }else if (pruebas === 100) {
                 return 20;
             } else {
                 return 0;

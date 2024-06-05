@@ -178,4 +178,9 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
       modMetricas.anadirMetricaCommit(numCommit, explicacion, pruebas, cantidadLineas, cobertura, tipo);
       expect(modMetricas.calcularPuntaje(numCommit)).toEqual(8); 
     });  
+
+    it("El proyecto debería leer un archivo de texto vacio y devolver mensaje de Archivo Vacio", ()=>{
+      const modMetricas = new ModuloMetricas();
+      expect(modMetricas.ingresarMetricasDesdeArchivo('archivoMetricas_1.txt')).toEqual("Archivo Vacio");
+    })
 });

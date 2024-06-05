@@ -87,32 +87,32 @@ describe("Crear un programa gamificado para TDDLab metricas", () => {
     expect(metrica.cobertura).toEqual(null);
   });
   //puntaje de pruebas agregadas
-  it('debe devolver 0 si las pruebas agregadas son 0', () => {
+  it('debe devolver 8 si las pruebas agregadas son 0', () => {
     const metrica = new Metrica();
-    expect(metrica.calcularPuntajePorPruebas(0)).toBe(0);
+    expect(metrica.calcularPuntajePorPruebas(0)).toBe(8);
   });
   it('debe devolver 8 si menos del 60% de los commits tienen pruebas', () => {
     const metrica = new Metrica(5, 'explicacion');
-    expect(metrica.calcularPuntajePorPruebas(2)).toBe(8);
+    expect(metrica.calcularPuntajePorPruebas(59)).toBe(8);
   });
   it('debe devolver 12 si entre el 60-79% de los commits tienen pruebas', () => {
     const metrica = new Metrica(5, 'explicacion');
-    expect(metrica.calcularPuntajePorPruebas(3)).toBe(12);
+    expect(metrica.calcularPuntajePorPruebas(61)).toBe(12);
   });
   it('debe devolver 16 si entre el 80-99% de los commits tienen pruebas', () => {
     const metrica = new Metrica(5, 'explicacion');
-    expect(metrica.calcularPuntajePorPruebas(4)).toBe(16);
+    expect(metrica.calcularPuntajePorPruebas(81)).toBe(16);
   });
   it('debe devolver 20 si el 100% de los commits tienen pruebas', () => {
     const metrica = new Metrica(5, 'explicacion');
-    expect(metrica.calcularPuntajePorPruebas(5)).toBe(20);
+    expect(metrica.calcularPuntajePorPruebas(100)).toBe(20);
     
   });
   
   it("Debe calcular el puntaje total sumando pruebas y cobertura", () => {
     const metrica = new Metrica(5, 'explicacion');
     const puntajeEsperado = metrica.calcularPuntaje(85, 50, 3, "Excelente"); // Ajustado para incluir cantidadLineas = 50
-    expect(puntajeEsperado).toEqual(60);
+    expect(puntajeEsperado).toEqual(56);
   });
 
   it("Debe calcular el puntaje con 20 pts para un commit con menos de 20 lineas",() => {

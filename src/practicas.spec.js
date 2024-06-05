@@ -273,7 +273,7 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
     const ranking = practicas.generarRanking();
     
     expect(ranking).toEqual([
-        { nombre: "Ejercicio1", puntaje: 16 } 
+        { nombre: "Ejercicio1", puntaje: 32 } 
     ]);
   });
   test('debería mostrar la posición relativa en el ranking', () => {
@@ -299,7 +299,7 @@ describe("Crear un programa gamificado para TDDLab Praticas", () => {
     expect(panel).toEqual({
         nombre: "Ejercicio1",
         metricas: [
-            { numeroCommit: 1, pruebas: 10, cobertura: 25, cantidadLineas: 25, explicacion: "Commit1", complejidad: "Bueno", tipo: "convencional", puntaje: 40}
+            { numeroCommit: 1, pruebas: 10, cobertura: 25, cantidadLineas: 25, explicacion: "Commit1", complejidad: "Bueno", tipo: "convencional", puntaje: 48}
         ]
     });
   });

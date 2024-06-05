@@ -1,5 +1,6 @@
 import Metrica from "./metrica.js";
-
+import path from "path"
+import fs from "fs"
 class ModuloMetricas {
     constructor() {
         this.arregloMetrica = [];
@@ -32,6 +33,13 @@ class ModuloMetricas {
         const nuevaMetrica = new Metrica(numeroCommit, explicacion, tipo);
         nuevaMetrica.cargarMetricas(pruebas, cobertura, cantidadLineas, complejidad, frecuencia);
         this.arregloMetrica.push(nuevaMetrica);
+    }
+
+    ingresarMetricasDesdeArchivo(rutaArchivoTxt) {
+        const archivoTxt = fs.readFileSync(path.join(__dirname, rutaArchivoTxt), 'utf8').trim();
+        if (archivoTxt.length === 0) {
+            return "Archivo Vacio";
+        }
     }
 
     desplegarMetrica() {
