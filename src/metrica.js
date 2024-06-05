@@ -72,7 +72,7 @@ class Metrica {
     }
 
     calcularPuntajePorPruebas(pruebas) {
-            const porcentajeConPruebas = (pruebas / this.numeroCommit) * 100;
+            const porcentajeConPruebas = pruebas;
             if (porcentajeConPruebas < 60) {
                 return 8;
             } else if (porcentajeConPruebas >= 60 && porcentajeConPruebas < 80) {
@@ -114,7 +114,7 @@ class Metrica {
     }
 
     calcularPuntajePorFrecuencia(frecuencia){
-        if(frecuencia <= 2){
+        if(frecuencia <= 2 && frecuencia > 0){
             return 20;
         } else if(frecuencia == 3){
             return 16;

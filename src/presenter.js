@@ -266,7 +266,7 @@ function ingresarAMetricaDePractica(nombrePractica) {
         <p style="margin-left: 20px;">Porcentaje de cobertura: ${metrica.cobertura || 'N/A'}</p>
         <p style="margin-left: 20px;">Cantidad de Líneas: ${metrica.cantidadLineas || 'N/A'}</p>
         <p style="margin-left: 20px;">Complejidad: ${metrica.complejidad || 'N/A'}</p>
-        <p style="margin-left: 20px;">Frecuencia: ${metrica.frecuencia || 'N/A'}</p>
+        <p style="margin-left: 20px;">Frecuencia: ${metrica.frecuencia || 'N/A'} dia(s)</p>
         <p style="margin-left: 20px;">Explicación: ${metrica.explicacion}</p>
         <p style="margin-left: 20px;">Puntaje: ${metrica.puntaje}</p>
       `;
@@ -293,25 +293,33 @@ function ingresarAMetricaDePractica(nombrePractica) {
     inputNumeroCommit.type = 'number';
     inputNumeroCommit.placeholder = 'Número de commit';
 
-    const inputPrueba = document.createElement('input');
-    inputPrueba.type = 'number';
-    inputPrueba.placeholder = 'Prueba';
-
-    const inputCobertura = document.createElement('input');
-    inputCobertura.type = 'number';
-    inputCobertura.placeholder = 'Cobertura';
+    const inputPruebas = document.createElement('input');
+    inputPruebas.type = 'number';
+    inputPruebas.placeholder = 'Pruebas';
 
     const inputCantidadLineas = document.createElement('input'); // Nueva línea para cantidad de líneas de código
     inputCantidadLineas.type = 'number'; // Tipo número para asegurar que se ingresen solo números
-    inputCantidadLineas.placeholder = 'Cantidad de líneas de código'; // Placeholder para guiar al usuario
+    inputCantidadLineas.placeholder = 'Cobertura'; // Placeholder para guiar al usuario
+
+    const inputCobertura = document.createElement('input');
+    inputCobertura.type = 'number';
+    inputCobertura.placeholder = 'Cantidad de líneas de código';
 
     const inputComplejidad = document.createElement('input'); 
     inputComplejidad.type = 'text'; 
     inputComplejidad.placeholder = 'Complejidad(Excelente, Bueno, Regular, Deficiente)';
 
-    const inputFrecuencia = document.createElement('input'); 
-    inputFrecuencia.type = 'text'; 
-    inputFrecuencia.placeholder = 'Frecuencia';
+    //const inputFrecuencia = document.createElement('input'); 
+    //inputFrecuencia.type = 'text'; 
+    //inputFrecuencia.placeholder = 'Frecuencia';
+
+    const inputFechaInicio = document.createElement('input');
+    inputFechaInicio.type = 'date';
+    inputFechaInicio.placeholder = 'Fecha de inicio';
+
+    const inputFechaFin = document.createElement('input');
+    inputFechaFin.type = 'date';
+    inputFechaFin.placeholder = 'Fecha de fin';
 
     const inputExplicacion = document.createElement('input');
     inputExplicacion.type = 'text';
@@ -333,13 +341,13 @@ function ingresarAMetricaDePractica(nombrePractica) {
 
     selectTipo.addEventListener('change', function() {
       if (selectTipo.value === 'refactoring') {
-        inputPrueba.style.display = 'none';
+        inputPruebas.style.display = 'none';
         inputCobertura.style.display = 'none';
         inputCantidadLineas.style.display = 'none'; // Ocultar el campo de cantidad de líneas para refactorización
         inputComplejidad.style.display = 'none';
         inputFrecuencia.style.display = 'none';
       } else {
-        inputPrueba.style.display = 'block';
+        inputPruebas.style.display = 'block';
         inputCobertura.style.display = 'block';
         inputCantidadLineas.style.display = 'block'; // Mostrar el campo de cantidad de líneas para convencional
         inputComplejidad.style.display = 'block';
@@ -358,18 +366,19 @@ function ingresarAMetricaDePractica(nombrePractica) {
       event.preventDefault();
       const numeroCommit = parseInt(inputNumeroCommit.value);
       const explicacion = inputExplicacion.value;
-      const prueba = parseInt(inputPrueba.value);
+      const pruebas = parseInt(inputPruebas.value);
       const cobertura = parseInt(inputCobertura.value);
       const cantidadLineas = parseInt(inputCantidadLineas.value);
       const complejidad = inputComplejidad.value;
-      const frecuencia = inputFrecuencia.value;
+      //const frecuencia = inputFrecuencia.value;
       const tipo = selectTipo.value;
 
-      /*const metrica = new Metrica();
-      const frecuencia = metrica.contarDias(practicaSeleccionada.ModuloMetricas.arregloMetrica[numeroCommit].frecuencia, inputFrecuencia.value);
-*/
+      const fechaInicio = new Date(inputFechaInicio.value);
+      const fechaFin = new Date(inputFechaFin.value);
+      const frecuencia = Math.round((fechaFin - fechaInicio) / (1000 * 60 * 60 * 24));
+
       if (!isNaN(numeroCommit) && explicacion) {
-        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, prueba, cobertura, cantidadLineas, complejidad, tipo, frecuencia);
+        const result = practicaSeleccionada.anadirMetrica(numeroCommit, explicacion, pruebas, cobertura, cantidadLineas, complejidad, tipo, frecuencia);
         if (result) {
           alert('Commit added successfully.');
         } else {
@@ -392,11 +401,13 @@ function ingresarAMetricaDePractica(nombrePractica) {
     proyectoContainer.appendChild(btnVerRecomendaciones);
 
     formMetrica.appendChild(inputNumeroCommit);
-    formMetrica.appendChild(inputPrueba);
+    formMetrica.appendChild(inputPruebas);
     formMetrica.appendChild(inputCobertura);
     formMetrica.appendChild(inputCantidadLineas); // Agregar el input de cantidad de líneas
     formMetrica.appendChild(inputComplejidad);
-    formMetrica.appendChild(inputFrecuencia);
+    //formMetrica.appendChild(inputFrecuencia);
+    formMetrica.appendChild(inputFechaInicio);
+    formMetrica.appendChild(inputFechaFin);
     formMetrica.appendChild(inputExplicacion);
     formMetrica.appendChild(selectTipo); 
     formMetrica.appendChild(btnConfirmMetrica);
