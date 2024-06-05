@@ -246,4 +246,61 @@ describe("Crear un programa gamificado para TDDLab ModuloMetricas", () => {
       expect(modMetricas.desplegarMetrica()).toEqual(expectedArray);
     });
 
+    it("El proyecto debería leer un archivo de texto con varios commits, y mostrar los commits en el array", () => {
+      const modMetricas = new ModuloMetricas();
+      const filePath = 'archivoMetricas_5.txt';
+      const result = modMetricas.ingresarMetricasDesdeArchivo(filePath);
+  
+      const expectedArray = [
+          {
+              numeroCommit: 1,
+              explicacion: 'explicacion01',
+              pruebas: 100,
+              cantidadLineas: 98,
+              cobertura: 12,
+              complejidad: "Bueno",
+              tipo: 'convencional',
+              frecuencia: 2,
+              puntaje: 72,
+          },
+          {
+            numeroCommit: 2,
+            explicacion: 'explicacion02',
+            pruebas: 200,
+            cantidadLineas: 198,
+            cobertura: 22,
+            complejidad: "Excelente",
+            tipo: 'convencional',
+            frecuencia: 3,
+            puntaje: 52,
+          },
+          {
+            numeroCommit: 3,
+            explicacion: 'explicacion03',
+            pruebas: 95,
+            cantidadLineas: 92,
+            cobertura: 18,
+            complejidad: "Bueno",
+            tipo: 'convencional',
+            frecuencia: 3,
+            puntaje: 64,
+          },
+          {
+            numeroCommit: 4,
+            explicacion: 'explicacion04',
+            pruebas: 80,
+            cantidadLineas: 75,
+            cobertura: 15,
+            complejidad: "Regular",
+            tipo: 'convencional',
+            frecuencia: 2,
+            puntaje: 64,
+          }
+
+      ];
+  
+      expect(result).toEqual("Archivo Leido");
+      expect(modMetricas.desplegarMetrica()).toEqual(expectedArray);
+    });
+
 });

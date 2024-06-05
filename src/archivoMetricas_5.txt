@@ -1,0 +1,4 @@
+1, explicacion01, 100, 98, 12, Bueno, convencional, 2
+2, explicacion02, 200, 198, 22, Excelente, convencional, 3
+3, explicacion03, 95, 92, 18, Bueno, convencional, 3
+4, explicacion04, 80, 75, 15, Regular, convencional, 2
